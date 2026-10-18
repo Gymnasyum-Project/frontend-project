@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 3fr 1fr 0.5fr;
     background-color: #ffff;
-    padding: 1.2rem;
+    padding: 1rem;
     gap: 1rem;
 }
 .searchbar{
