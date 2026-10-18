@@ -1,0 +1,62 @@
+.container{
+    background-color: white;
+    height: 100vh;
+    border-right: 1px solid #E5E7EB;
+}
+.container .top h1{
+    font-family: 'Inter',
+        ui-sans-serif,
+        system-ui,
+        sans-serif;
+}
+.top{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 1rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+.top .icon{
+    background-color: #134e4a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 3rem;
+    width: 3rem;
+}
+
+/* CONTENT */
+.content{
+    padding: 1rem;
+}
+
+a{
+    text-decoration: none;
+
+}
+.tab{
+    color: #134e4a;
+    padding: 0.5rem;
+}
+.active{
+    background-color: #134e4a;
+    color: #f0fdfa;
+    border-radius:10px;
+}
+
+.buttom {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-top: 1px solid #E5E7EB;
+}
+.btm-icon{
+    font-weight: bold;
+    background-color: #ccfbf1;
+    padding: 0.5rem;
+    border-radius: 30px;
+
+}
