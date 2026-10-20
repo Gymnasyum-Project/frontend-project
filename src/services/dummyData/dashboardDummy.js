@@ -56,11 +56,14 @@ export const dashboardDummy = {
   ],
  
   anttendance_trend: [
-    { week: "2026-09-14T00:00:00.000Z", hadir: 9, total: 31 },
+    { week: "2026-08-23T00:00:00.000Z", hadir: 20, total: 31 },
+    { week: "2026-08-30T00:00:00.000Z", hadir: 15, total: 27 },
+    { week: "2026-09-7T00:00:00.000Z", hadir: 32, total: 38 },
+    { week: "2026-09-14T00:00:00.000Z", hadir: 24, total: 35 },
     { week: "2026-09-21T00:00:00.000Z", hadir: 25, total: 50 },
-    { week: "2026-09-28T00:00:00.000Z", hadir: 22, total: 27 },
-    { week: "2026-10-05T00:00:00.000Z", hadir: 15, total: 45 },
-    { week: "2026-10-12T00:00:00.000Z", hadir: 38, total: 69 },
+    { week: "2026-09-28T00:00:00.000Z", hadir: 22, total: 45 },
+    { week: "2026-10-05T00:00:00.000Z", hadir: 44, total: 55 },
+    { week: "2026-10-12T00:00:00.000Z", hadir: 38, total: 45 },
   ],
 };
  
