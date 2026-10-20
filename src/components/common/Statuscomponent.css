@@ -1,0 +1,63 @@
+.status-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    min-height: 60vh;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.status-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.status-icon--error {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.status-icon--empty {
+    background: #f3f4f6;
+    color: #9ca3af;
+}
+
+.status-title {
+    margin: 0;
+    font-size: 18px;
+    color: #111827;
+}
+
+.status-message {
+    margin: 0;
+    max-width: 320px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.status-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #0f766e;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.status-btn:hover {
+    background: #115e59;
+}

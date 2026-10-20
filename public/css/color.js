@@ -19,5 +19,20 @@ export const COLORS = {
         700: '#374151',
         800: '#1F2937',
         900: '#111827',
+    },
+    yellow:{
+        50:'#faf5c8',
+        100:'#ffc800',
+    },
+    red:{
+        50: '#ffc4c4',
+        100: '#ff0000',
     }
+    
 }
+
+export const LABEL_COLORS = {
+    "Active": "#16a34a",
+    "At Risk": "#dc2626",
+    "Need Attention": "#f59e0b",
+};

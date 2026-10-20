@@ -1,37 +1,40 @@
-import React from "react";
-import { COLORS } from '../../../public/css/color';
+// src/components/layout/HeaderComponent.jsx
 import { IoSearch } from 'react-icons/io5';
-import './style.css'
+import './HeaderComponent.css';
 
-function HeaderComponent({title, subTitle}){
+function HeaderComponent({
+  title,
+  subTitle,
+  searchValue = '',
+  onSearchChange,
+  searchPlaceholder = 'Cari customer...',
+  userInitials = 'AD',
+  onProfileClick,
+}) {
+  return (
+    <header className="header"  >
+      <div>
+        <p className="header_title">{title}</p>
+        <p className="header_subtitle">{subTitle}</p>
+      </div>
 
-    return(
-        <>
-            <div className="container-header">
-                <div>
-                    <p style={{ fontSize: "20px" }}>{title}</p>
-                    <p style={{ color: COLORS.gray[400], fontSize:"12px"}}>{subTitle}</p>
-                </div>
+      <div className="header_search">
+        <IoSearch className="header_search-icon" size={16} aria-hidden="true" />
+        <input
+          type="search"
+          className="header_search-input"
+          placeholder={searchPlaceholder}
+          aria-label={searchPlaceholder}
+          value={searchValue}
+          onChange={(e) => onSearchChange?.(e.target.value)}
+        />
+      </div>
 
-                <div className="searchbar">
-                    <div className="search-container">
-                        <IoSearch className="search-icon" size={16} />
-                        <input 
-                            type="text" 
-                            placeholder="Cari customer..." 
-                            className="search-input"
-                        />
-                    </div>
-                </div>
-                <div className="profil">
-                    <div className="icon-person">
-                        <p>AD</p>
-                    </div>
-                </div>
-            </div>
-        
-        </>
-    )
+      <button type="button" className="header_profile" onClick={onProfileClick}>
+        {userInitials}
+      </button>
+    </header>
+  );
 }
 
 export default HeaderComponent;
