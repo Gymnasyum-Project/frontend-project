@@ -43,7 +43,13 @@ a{
     color: #f0fdfa;
     border-radius:10px;
 }
-
+.container-bottom{
+    position: absolute;
+    bottom: 0;
+}
+.logout{
+    display: none;
+}
 .buttom {
     position: absolute;
     bottom: 0;

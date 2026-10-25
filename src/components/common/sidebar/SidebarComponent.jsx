@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import "./style.css";
+import useLogout from "../../../hooks/useLogout";
+import { useState } from "react";
+import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import { LuDumbbell } from "react-icons/lu";
 import { RiDashboard3Fill } from "react-icons/ri";
 import { IoPeople, IoSettings } from "react-icons/io5";
@@ -7,9 +9,13 @@ import { PiFlagFill } from "react-icons/pi";
 import { FaPencil } from "react-icons/fa6";
 import { COLORS } from "../../../styles/color";
 
+import "./style.css";
+
 function SidebarComponent() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const logout = useLogout();
 
   return (
     <>
@@ -36,8 +42,10 @@ function SidebarComponent() {
           >
             Menu
           </p>
-          <Link to={"/"}>
-            <div className={`tab ${currentPath === "/" ? "active" : ""}`}>
+          <Link to={"/dashboard"}>
+            <div
+              className={`tab ${currentPath === "/dashboard" ? "active" : ""}`}
+            >
               <RiDashboard3Fill /> Dashboard
             </div>
           </Link>
@@ -70,13 +78,30 @@ function SidebarComponent() {
             </div>
           </Link>
         </div>
-        <div className="buttom">
-          <div className="btm-icon">
-            <p>AD</p>
+
+        <div className="container-bottom">
+          <div className="tab logout">
+            <button type="button" onClick={() => setConfirmOpen(true)}>
+              <ConfirmDialog
+                open={confirmOpen}
+                title="Keluar dari akun?"
+                message="Kamu perlu masuk lagi untuk mengakses dashboard."
+                confirmText="Ya, keluar"
+                cancelText="Batal"
+                onConfirm={logout}
+                onCancel={() => setConfirmOpen(false)}
+              />
+              Logout
+            </button>
           </div>
-          <div>
-            <p>Admin</p>
-            <p style={{ fontSize: "12px" }}>admin@gymnasyum.id</p>
+          <div className="buttom">
+            <div className="btm-icon">
+              <p>AD</p>
+            </div>
+            <div>
+              <p>Admin</p>
+              <p style={{ fontSize: "12px" }}>admin@gymnasyum.id</p>
+            </div>
           </div>
         </div>
       </div>
