@@ -1,4 +1,4 @@
-import "./attendenceBar.css";
+import "./AttendanceBar.css";
 
 function AttendanceBar({ value = 0, max = 10, showLabel = true }) {
   const filled = Math.max(0, Math.min(value, max));

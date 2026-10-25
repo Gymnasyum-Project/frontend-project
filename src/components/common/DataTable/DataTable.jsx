@@ -1,5 +1,5 @@
 import "./DataTable.css";
-import AttendanceBar from "../../common/attendenceBar";
+import AttendanceBar from "../../common/AttendanceBar";
 import formatDate from "../formatDate";
 const getInitials = (name) => {
   const words = name.trim().split(/\s+/);

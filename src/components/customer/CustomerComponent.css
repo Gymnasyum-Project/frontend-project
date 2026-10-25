@@ -8,6 +8,7 @@
 }
 
 .tab-bar{
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -27,6 +28,7 @@
     padding: 0.5rem;
     border-radius: 10px;
     border: 1px solid #E5E7EB;
+    cursor: pointer;
 }
 .header_search {
     display: flex;
