@@ -1,5 +1,5 @@
 import { LABEL_COLORS } from "../../styles/color";
-import EmptyComponent from "../common/Emptycomponent";
+import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
 import { IoSearch } from "react-icons/io5";
 import DataTable from "../common/DataTable/DataTable";
 

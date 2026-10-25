@@ -1,5 +1,5 @@
 import "./DataTable.css";
-import AttendanceBar from "../../common/AttendanceBar";
+import AttendanceBar from "../AttendanceBar/AttendanceBar";
 import formatDate from "../formatDate";
 const getInitials = (name) => {
   const words = name.trim().split(/\s+/);
@@ -8,7 +8,6 @@ const getInitials = (name) => {
 };
 
 export default function DataTable({ filterData, labelStyle, LABEL_COLORS }) {
-  console.log(filterData);
   return (
     <table style={{ borderCollapse: "collapse" }}>
       <thead>

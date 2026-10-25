@@ -1,7 +1,7 @@
 import useCustomerHooks from "../../hooks/useCustomerHooks";
-import EmptyComponent from "../common/Emptycomponent";
-import ErrorComponent from "../common/Errorcomponent";
-import LoadingComponent from "../loading/LoadingComponent";
+import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
+import ErrorComponent from "../common/ErrorComponent/Errorcomponent";
+import LoadingComponent from "../common/loading/LoadingComponent";
 import TabBarCustomer from "./TabBarCustomer";
 import TableCustomer from "./TableCustomer";
 import { useState, useEffect } from "react";
@@ -49,7 +49,6 @@ function CustomerComponent() {
     acc[c.risk_label] = (acc[c.risk_label] ?? 0) + 1;
     return acc;
   }, {});
-
   const tabs = [
     { label: "Semua", total: customers.length },
     ...Object.entries(counts).map(([label, total]) => ({ label, total })),
