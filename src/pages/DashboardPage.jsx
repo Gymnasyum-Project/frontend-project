@@ -2,7 +2,7 @@
 import SidebarComponent from "../components/sidebar/SidebarComponent";
 import HeaderComponent from "../components/header/HeaderComponent";
 import DasboardComponent from "../components/dashboard/DashboardComponent";
-import '../../public/css/layout.css'
+import '../styles/layout.css'
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
 
@@ -31,7 +31,7 @@ function DashboardPage(){
                     >
                         <IoMenu size={24} />
                     </button>
-                        <HeaderComponent title={title} subTitle={subTitle} />
+                        <HeaderComponent title={title} subTitle={subTitle} className="halo"/>
                    
                      </div>
                     <DasboardComponent />

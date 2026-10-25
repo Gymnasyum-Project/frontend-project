@@ -1,7 +1,8 @@
 
 import SidebarComponent from "../components/sidebar/SidebarComponent";
 import HeaderComponent from "../components/header/HeaderComponent";
-import '../../public/css/layout.css'
+import CustomerComponent from "../components/customer/CustomerComponent";
+import '../styles/layout.css'
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
 
@@ -9,6 +10,7 @@ function CustomerPage(){
     const [sidebar, setSidebar] = useState(false)
     const title = "Customer Page"
     const subTitle = "Kelola dan pantau customer"
+    
 
     
     return(
@@ -32,6 +34,8 @@ function CustomerPage(){
                     </button>
                         <HeaderComponent title={title} subTitle={subTitle} />                   
                     </div>
+
+                    <CustomerComponent/>
                 </main>
             </div>
         

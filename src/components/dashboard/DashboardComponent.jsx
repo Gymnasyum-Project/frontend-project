@@ -3,9 +3,9 @@ import ChartCard from "./ChartCard";
 import useDashboardSummary from "../../hooks/useDashboardSummary";
 import CustomerTopPriority from "./CustomerTopPriority";
 import './DashboardComponent.css'
-import { LABEL_COLORS } from "../../../public/css/color";
+import { LABEL_COLORS } from "../../styles/color";
 import LoadingComponent from "../loading/LoadingComponent";
-import ErrorComponent from "../common/Errorcomponent ";
+import ErrorComponent from "../common/Errorcomponent";
 import EmptyComponent from "../common/Emptycomponent";
 
 const card = {
@@ -36,9 +36,7 @@ function DasboardComponent(){
             <div>
                 <CardFirst  styleCard ={card} totalCustomers={total_customers} riskPredictions={risk_predictions} />
                 <ChartCard LABEL_COLORS={LABEL_COLORS} styleCard ={card} risk_predictions={risk_predictions} anttendance_trend = {anttendance_trend}/>
-                <CustomerTopPriority LABEL_COLORS={LABEL_COLORS} styleCard={card} top_priority = {top_priority}/>
-
-            
+                <CustomerTopPriority LABEL_COLORS={LABEL_COLORS} styleCard={card} top_priority = {top_priority}/>           
             </div>
         </>
     )

@@ -1,0 +1,39 @@
+.att-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.att-bar__segments {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.att-bar__seg {
+    width: 5px;
+    height: 16px;
+    border-radius: 999px;
+    /* ujung membulat seperti pil */
+    background: #e5e7eb;
+    /* segmen kosong */
+}
+
+.att-bar__seg--on {
+    background: #0f766e;
+    /* segmen terisi */
+}
+
+.att-bar__label {
+    min-width: 24px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* Layar kecil: sedikit lebih ramping */
+@media (max-width: 768px) {
+    .att-bar__seg {
+        width: 4px;
+        height: 14px;
+    }
+}

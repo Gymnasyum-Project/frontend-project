@@ -5,7 +5,7 @@ import { RiDashboard3Fill } from "react-icons/ri";
 import { IoPeople, IoSettings } from "react-icons/io5";
 import { PiFlagFill } from "react-icons/pi";
 import { FaPencil } from "react-icons/fa6";
-import { COLORS } from '../../../public/css/color';
+import { COLORS } from '../../styles/color';
 
 function SidebarComponent(){
     const location = useLocation()
