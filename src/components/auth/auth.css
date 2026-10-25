@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 15% 35%, rgba(232, 249, 245, .65), transparent 38%),
+        linear-gradient(135deg, #f5fafb 0%, #f5f8fc 100%);
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.page-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 38px 20px;
+    width: 100%;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 388px;
+    padding: 37px 37px 36px;
+    background: rgba(255, 255, 255, .97);
+    border: 1px solid #edf1f5;
+    border-radius: 16px;
+    box-shadow: 0 15px 24px rgba(22, 37, 52, .12), 0 2px 4px rgba(22, 37, 52, .04);
+}
+
+.brand {
+    text-align: center;
+    margin-bottom: 31px;
+}
+
+.brand-icon {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: #0f8b80;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(15, 139, 128, .15);
+}
+
+.brand h1 {
+    margin: 0;
+    color: #12213b;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -.45px;
+}
+
+.brand p {
+    margin: 8px 0 0;
+    color: #5876a7;
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #203657;
+    font-size: 13px;
+}
+
+.input-wrap {
+    position: relative;
+}
+
+.field input {
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+    color: #172b4d;
+    background: #f7f9fb;
+    border: 1px solid #dbe4ef;
+    border-radius: 11px;
+    outline: none;
+    font-size: 13px;
+    box-shadow: inset 0 1px 1px rgba(20, 40, 70, .02);
+    transition: border-color .18s, box-shadow .18s, background .18s;
+}
+
+.field input:focus {
+    border-color: #13877d;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(19, 135, 125, .1);
+}
+
+.field input::placeholder {
+    color: #9aa8ba;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    color: #75849a;
+    display: flex;
+    padding: 5px;
+}
+
+.field:has(.show-password) input {
+    padding-right: 42px;
+}
+
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0;
+    gap: 8px;
+}
+
+.remember {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #4c6281;
+    font-size: 12.5px;
+    cursor: pointer;
+}
+
+.remember input {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    accent-color: #087bff;
+}
+
+.text-button {
+    border: 0;
+    padding: 0;
+    color: #087f78;
+    background: transparent;
+    font-size: 12.5px;
+    font-weight: 500;
+}
+
+.text-button:hover {
+    color: #075e58;
+    text-decoration: underline;
+}
+
+.primary-button {
+    min-height: 42px;
+    width: 100%;
+    border: 0;
+    border-radius: 11px;
+    background: #107b72;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background .18s, transform .18s;
+}
+
+.primary-button:hover {
+    background: #0b6e66;
+}
+
+.primary-button:active {
+    transform: translateY(1px);
+}
+
+.switch-copy {
+    text-align: center;
+    color: #63738b;
+    font-size: 12px;
+    margin: 18px 0 0;
+}
+
+.switch-copy .text-button {
+    margin-left: 3px;
+}
+
+footer {
+    margin-top: 24px;
+    color: #8796b6;
+    text-align: center;
+    font-size: 10.5px;
+    line-height: 1.6;
+}
+
+.feedback {
+    margin: -5px 0 0;
+    color: #176b65;
+    background: #edf9f6;
+    border-radius: 8px;
+    padding: 10px 11px;
+    font-size: 11.5px;
+    line-height: 1.5;
+}
+
+.feedback.error {
+    color: #a12a36;
+    background: #fff0f1;
+}
+
+.feedback.success {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+}
+
+.feedback.success svg {
+    flex-shrink: 0;
+}
+
+.register-card {
+    max-width: 420px;
+    padding-top: 25px;
+}
+
+.register-card .brand {
+    margin-bottom: 22px;
+}
+
+.register-card .brand-icon {
+    width: 47px;
+    height: 47px;
+    border-radius: 13px;
+    margin-bottom: 12px;
+}
+
+.register-card .brand h1 {
+    font-size: 21px;
+}
+
+.register-card form {
+    gap: 14px;
+}
+
+.register-card .field {
+    gap: 7px;
+}
+
+.register-card .field input {
+    height: 42px;
+}
+
+.register-heading {
+    text-align: center;
+    margin: 0 0 22px;
+}
+
+.register-heading h2 {
+    margin: 0 0 7px;
+    color: #203657;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.register-heading p {
+    margin: 0;
+    color: #71819a;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 0;
+    background: transparent;
+    color: #60728b;
+    font-size: 12px;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.back-button:hover {
+    color: #0f7c72;
+}
+
+.terms {
+    margin: 1px 0 0;
+    align-items: flex-start;
+}
+
+.terms input {
+    margin-top: 2px;
+}
+.feedback.success {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #ecfdf5;
+    color: #047857;
+    font-size: 14px;
+}
+
+
+@media (max-width: 480px) {
+    .page-shell {
+        padding: 22px 14px;
+        align-items: center;
+    }
+
+    .auth-card {
+        padding: 30px 24px 27px;
+        border-radius: 15px;
+    }
+
+    .register-card {
+        padding-top: 22px;
+    }
+
+    .brand {
+        margin-bottom: 27px;
+    }
+
+    .form-options {
+        align-items: center;
+    }
+}
+
+@media (max-width: 350px) {
+    .auth-card {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .text-button,
+    .remember {
+        font-size: 11.5px;
+    }
+}
