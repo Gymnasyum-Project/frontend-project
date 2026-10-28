@@ -84,8 +84,6 @@ function CustomerComponent() {
           activeLabel={activeLabel}
           setActiveLabel={setActiveLabel}
         />
-      </div>
-      <div>
         <TableCustomer
           search={search}
           setSearch={setSearch}

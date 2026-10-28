@@ -63,12 +63,7 @@
 .header_search-input::placeholder {
     color: #94a3b8;
 }
-.head-table{
-    padding: 1rem 0 0;
-    align-items: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
+
 @media(max-width: 468px){
     *{
         font-size: 0.75rem;
@@ -89,47 +84,5 @@
 
 
 }
-table{
-    font-size: 0.8rem;
-    width: 100%;
-    text-align: center;
-}
-th {
-    color: #9CA3AF;
-    padding: 1rem;
-}
-.phonestyle{
-    color:#9CA3AF;
-    font-size: 0.5rem;    
-}
 
-@media (max-width: 478px) {
 
-    table tr th,
-    td {
-        font-size: 0.8rem;
-    }
-
-    button {
-        font-size: 0.6rem;
-    }
-
-    .chart-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .hide-mobile {
-        display: none;
-    }
-
-    .label-atrisk {
-        font-size: 0.6rem;
-    }
-    .head-table{
-        font-size: 0.9rem;
-    }
-    .head-table input{
-        padding: 3px;
-        font-size: 0.8rem;
-    }
-}

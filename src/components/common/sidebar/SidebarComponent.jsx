@@ -51,7 +51,7 @@ function SidebarComponent() {
           </Link>
           <Link to={"/customer"}>
             <div
-              className={`tab ${currentPath === "/customer" ? "active" : ""}`}
+              className={`tab ${currentPath.startsWith("/customer") ? "active" : ""}`}
             >
               <IoPeople /> Customer
             </div>

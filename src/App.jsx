@@ -6,6 +6,7 @@ import InputPage from "./pages/InputPage";
 import SettingPage from "./pages/SettingPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import DetailCustomerPage from "./pages/DetailCustomerPage";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import { getToken } from "./utils/auth";
 
@@ -28,6 +29,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/customer" element={<CustomerPage />} />
+            <Route path="/customer/:id" element={<DetailCustomerPage />} />
             <Route
               path="/priority-followup"
               element={<PirorityFollowUpPage />}

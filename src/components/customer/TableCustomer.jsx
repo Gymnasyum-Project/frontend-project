@@ -2,6 +2,7 @@ import { LABEL_COLORS } from "../../styles/color";
 import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
 import { IoSearch } from "react-icons/io5";
 import DataTable from "../common/DataTable/DataTable";
+import { useNavigate } from "react-router-dom";
 
 const card = {
   backgroundColor: "#F9FAFB",
@@ -36,6 +37,7 @@ function TableCustomer({
 }) {
   const totalPages = meta?.totalPages ?? 1;
   const MAX_VISIBLE = 3;
+  const navigate = useNavigate();
 
   let start = Math.max(1, page - Math.floor(MAX_VISIBLE / 2));
   let end = start + MAX_VISIBLE - 1;
@@ -74,11 +76,14 @@ function TableCustomer({
         {filterData.length === 0 || null ? (
           <EmptyComponent />
         ) : (
-          <DataTable
-            filterData={filterData}
-            labelStyle={labelStyle}
-            LABEL_COLORS={LABEL_COLORS}
-          />
+          <div style={{ overflowX: "auto", width: "100%" }}>
+            <DataTable
+              filterData={filterData}
+              labelStyle={labelStyle}
+              LABEL_COLORS={LABEL_COLORS}
+              onDetail={(customer) => navigate(`/customer/${customer.id}`)}
+            />
+          </div>
         )}
 
         <div

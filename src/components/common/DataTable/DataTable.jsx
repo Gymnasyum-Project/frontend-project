@@ -7,17 +7,22 @@ const getInitials = (name) => {
   return (words[0][0] + words[1][0]).toUpperCase();
 };
 
-export default function DataTable({ filterData, labelStyle, LABEL_COLORS }) {
+export default function DataTable({
+  filterData,
+  labelStyle,
+  LABEL_COLORS,
+  onDetail,
+}) {
   return (
     <table style={{ borderCollapse: "collapse" }}>
       <thead>
         <tr>
           <th style={{ textAlign: "left" }}>Nama</th>
-          <th className="hide-mobile">Segment</th>
+          <th className="hide-mobile hide-tablet">Segment</th>
           <th>Status Resiko</th>
           <th>Skor Resiko</th>
           <th className="hide-mobile">Kehadiran (30)</th>
-          <th className="hide-mobile">Sisa Paket</th>
+          <th className="hide-mobile hide-tablet">Sisa Paket</th>
           <th className="hide-mobile">Terakhir Hadir</th>
           <th>Aksi</th>
         </tr>
@@ -53,7 +58,7 @@ export default function DataTable({ filterData, labelStyle, LABEL_COLORS }) {
                 <p className="sub-gray-font">{e.phone}</p>
               </div>
             </td>
-            <td className="hide-mobile">{e.segment}</td>
+            <td className="hide-mobile hide-tablet">{e.segment}</td>
             <td className="cellBody">
               <div style={labelStyle(e.risk_label)}>
                 <span
@@ -84,10 +89,17 @@ export default function DataTable({ filterData, labelStyle, LABEL_COLORS }) {
             <td className="hide-mobile">
               <AttendanceBar value={e.attendance_30d} />
             </td>
-            <td className="hide-mobile">{e.remaining_sessions} Sesi</td>
+            <td className="hide-mobile hide-tablet">
+              {e.remaining_sessions} Sesi
+            </td>
             <td className="hide-mobile">{formatDate(e.package_end_date)}</td>
             <td>
-              <button className="btn" style={{ border: "1px solid #14b8a6" }}>
+              <button
+                type="button"
+                className="btn"
+                style={{ border: "1px solid #14b8a6" }}
+                onClick={() => onDetail?.(e)}
+              >
                 Lihat Detail
               </button>
             </td>

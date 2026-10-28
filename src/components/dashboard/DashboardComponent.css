@@ -8,31 +8,13 @@
 .chart-grid>* {
     min-width: 0;
 }
-
-th {
-    color: #9CA3AF;
-    padding: 1rem;
+.btn-lihat-semua{
+    padding: 0.3rem;
+    cursor: pointer;
+    background: none;border-radius: 5px;border: 1px solid #9CA3AF;
 }
 @media (max-width: 478px) {
-
-    table tr th,
-    td {
-        font-size: 0.8rem;
-    }
-
-    button {
-        font-size: 0.6rem;
-    }
-
     .chart-grid {
         grid-template-columns: minmax(0, 1fr);
     }
-
-    .hide-mobile {
-        display: none;
-    }
-    .label-atrisk{
-        font-size: 0.7rem;
-    }
-
 }
