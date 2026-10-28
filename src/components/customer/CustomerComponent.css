@@ -1,0 +1,88 @@
+.head-tab{
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+    padding: 0.8rem;
+    font-size: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.tab-bar{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.tab-risk{
+    padding: 0.3rem;
+    background-color: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+}
+
+.active {
+    background-color: #134e4a;
+    color: #f0fdfa;
+}
+.filter-resiko{
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid #E5E7EB;
+    cursor: pointer;
+}
+.header_search {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    padding: 6px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.header_search:focus-within {
+    border-color: #94a3b8;
+    box-shadow: 0 0 0 2px rgba(203, 213, 225, 0.2);
+}
+
+.header_search-icon {
+    margin-right: 8px;
+    color: #64748b;
+    flex-shrink: 0;
+}
+
+.header_search-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: #1e293b;
+}
+
+.header_search-input::placeholder {
+    color: #94a3b8;
+}
+
+@media(max-width: 468px){
+    *{
+        font-size: 0.75rem;
+    }
+    header{
+        
+    }
+    .tab-bar{
+        padding: 0.5rem;
+        gap: 2px;
+    }
+    select{
+        background-color: #F9FAFB;
+    }
+    select option{
+        font-size: 0.6rem;
+    }
+
+
+}
+
+

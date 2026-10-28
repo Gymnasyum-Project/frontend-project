@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { getDashboardSummary } from "../services/dashboardService";
 import { dashboardDummy } from "../services/dummyData/dashboardDummy";
 
-const USE_DUMMY = true;
+const USE_DUMMY = false;
 
 const loadSummary = () =>
   USE_DUMMY
-    // ? new Promise((_,reject) => setTimeout(() => reject(new Error("Tidak Ada Jarigan")), 3000)) //test error 
-    ? new Promise((resolve) => setTimeout(() => resolve(dashboardDummy), 3000))
+    ? // ? new Promise((_,reject) => setTimeout(() => reject(new Error("Tidak Ada Jarigan")), 3000)) //test error
+      new Promise((resolve) => setTimeout(() => resolve(dashboardDummy), 300))
     : getDashboardSummary();
 
 export default function useDashboardSummary() {

@@ -1,0 +1,259 @@
+.container-detail {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.profil {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.profil-in {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.font-gray {
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+
+/* Second Card */
+.history-customer-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.font-red {
+  color: red;
+}
+
+/* THREE CARD */
+.container-three-card {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+.top-three {
+  border-bottom: 1px solid #9ca3af;
+  display: flex;
+  gap: 1rem;
+}
+.tab-three {
+  cursor: pointer;
+  color: #9ca3af;
+  font-size: 0.8rem;
+  padding: 1rem;
+}
+.active-three {
+  color: #134e4a;
+
+  border-bottom: 2px solid #134e4a;
+}
+tr th,
+td {
+  font-size: 0.7rem;
+}
+
+/* TAB PAKET */
+.paket-list {
+  display: grid;
+  gap: 12px;
+  padding: 16px 0 4px;
+}
+
+.paket-card {
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.paket-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.paket-name {
+  margin: 0;
+  color: #1f2937;
+}
+
+.paket-date {
+  margin: 2px 0 0;
+  color: #9ca3af;
+  font-size: 0.7rem;
+}
+
+.paket-badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.paket-badge--active {
+  background: #dcfce7;
+  color: #0f766e;
+}
+
+.paket-badge--done {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.paket-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.paket-progress {
+  flex: 1;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.paket-progress-bar {
+  height: 100%;
+  background: #0f766e;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.paket-count {
+  font-size: 0.7rem;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.paket-empty {
+  padding: 16px 0;
+  color: #9ca3af;
+}
+
+.btn-generate-pesan {
+  border-radius: 10px;
+  padding: 0.2rem;
+  border: 1px solid #9ca3af;
+  cursor: pointer;
+}
+.btn-generate-pesan:hover {
+  background-color: #ccfbf1;
+}
+.btn-kirim-pesan {
+  border-radius: 10px;
+  padding: 0.4rem;
+  border: 1px solid #9ca3af;
+  background-color: #134e4a;
+  color: #f1f5f9;
+}
+.btn-kirim-pesan:hover {
+  background-color: #115e59;
+}
+
+/* CARD AI */
+.ai-summary-card {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  text-align: left;
+}
+
+.judul-ai {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid #9ca3af;
+  font-weight: 600;
+  color: #134e4a;
+}
+
+.wa-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  padding: 0.75rem;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  font-family: inherit;
+  line-height: 1.5;
+  background-color: #f0fdfa;
+}
+
+.wa-button {
+  align-self: flex-end;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.wa-button:hover {
+  background: #1ebe5b;
+}
+.col-ai {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (max-width: 768px) {
+  .history-customer-container {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .container-three-card {
+    grid-template-columns: 1fr;
+  }
+  .col-ai {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    order: -1;
+  }
+}
+@media (max-width: 468px) {
+  body {
+    font-size: 0.8rem;
+  }
+  .history-customer-container {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  button,
+  input,
+  textarea,
+  select {
+    font-size: inherit;
+  }
+
+  .font-gray {
+    font-size: 0.6rem;
+  }
+  .font-gray {
+    font-size: 0.6rem;
+  }
+  .container-three-card {
+    grid-template-columns: 1fr;
+  }
+  .col-ai {
+    order: -1;
+  }
+}
