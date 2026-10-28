@@ -47,7 +47,6 @@ export default function DetailCustomerComponent() {
   if (error) return <ErrorComponent />;
   if (!data) return <EmptyComponent />;
 
-  console.log();
   return (
     <div className="container-detail">
       <div className="back-link">

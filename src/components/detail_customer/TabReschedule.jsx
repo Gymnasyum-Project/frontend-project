@@ -17,7 +17,6 @@ export default function TabReschedule({ data }) {
         </thead>
         <tbody>
           {data.map((e) => {
-            console.log();
             return (
               <tr key={e.id}>
                 <td>{e.package_name}</td>

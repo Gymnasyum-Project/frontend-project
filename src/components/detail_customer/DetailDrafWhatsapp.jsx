@@ -29,7 +29,6 @@ export default function DetailDrafWhatsapp({ data }) {
     setError(null);
     try {
       const result = await generateSummary(data.id, { regenerate: true });
-      console.log("HASIL GENERATE:", result);
 
       setSummary(result);
       setPesan(draftOf(result));
@@ -70,7 +69,6 @@ export default function DetailDrafWhatsapp({ data }) {
         );
     }
   };
-  console.log(pesan);
   return (
     <div className="ai-summary-card">
       <p className="judul-ai">
