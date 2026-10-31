@@ -1,5 +1,6 @@
 import SidebarComponent from "../components/common/sidebar/SidebarComponent";
 import HeaderComponent from "../components/common/header/HeaderComponent";
+import InputComponent from "../components/Input/InputComponent";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
 
@@ -32,7 +33,7 @@ function InputPage() {
           </button>
           <HeaderComponent title={title} subTitle={subTitle} />
         </div>
-        {/* <InputPageComponent /> */}
+        <InputComponent />
       </main>
     </div>
   );

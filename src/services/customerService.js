@@ -1,5 +1,30 @@
 import api from "./api";
 
+export const addCustomer = async ({
+  full_name,
+  phone,
+  email,
+  birth_date,
+  package_id,
+  segment,
+  service_type,
+  join_date,
+  notes,
+}) => {
+  const res = await api.post("./customers", {
+    full_name,
+    phone,
+    email,
+    birth_date,
+    package_id,
+    segment,
+    service_type,
+    join_date,
+    notes,
+  });
+  return res.data.data;
+};
+
 export const getCustomer = async ({
   page = 1,
   limit = 20,
