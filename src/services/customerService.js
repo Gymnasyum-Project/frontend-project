@@ -11,7 +11,7 @@ export const addCustomer = async ({
   join_date,
   notes,
 }) => {
-  const res = await api.post("./customers", {
+  const res = await api.post("/customers", {
     full_name,
     phone,
     email,
@@ -48,14 +48,20 @@ export const generateSummary = async (
   customerId,
   { regenerate = false } = {},
 ) => {
-  // try {
   const res = await api.post(`/ai/summary/${customerId}`, { regenerate });
   return res.data.data;
-  // } catch (err) {
-  //   throw new Error(err.response?.data?.message || "Gagal Generate Draft");
-  // }
 };
 export const updateSummary = async (id, payload) => {
   const response = await api.patch(`/ai/summary/${id}`, payload);
+  return response.data.data;
+};
+
+export const getCustomerPackages = async (customerId) => {
+  const response = await api.get(`/customer-packages/${customerId}`);
+  return response.data.data;
+};
+
+export const addCustomerPackages = async (customerId, payload) => {
+  const response = await api.post(`/customer-packages/${customerId}`, payload);
   return response.data.data;
 };

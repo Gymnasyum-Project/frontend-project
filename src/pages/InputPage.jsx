@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function InputPage() {
   const [sidebar, setSidebar] = useState(false);
-  const title = "Input Data";
+  const title = "Input Data Customer";
   const subTitle = "Tambah data cstomer, kehadiran, paket dan reschadule";
   return (
     <div className="page-layout">

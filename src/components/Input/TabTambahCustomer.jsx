@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAddCustomer } from "../../hooks/useAddCustomer";
+import { useGetPackage } from "../../hooks/useGetPackage";
 
 const listSegment = [
   { value: "ibu_ibu", label: "Ibu-ibu" },
@@ -8,12 +9,12 @@ const listSegment = [
   { value: "lainnya", label: "Lainnya" },
 ];
 
-const listPackage = [
-  { id: 1, name: "Paket Private Coaching 8 Sesi" },
-  { id: 2, name: "Paket Gym 10 Sesi" },
-  { id: 3, name: "Paket Yoga 10 Sesi" },
-  { id: 4, name: "Paket Pillates 10 Sesi" },
-];
+// const listPackage = [
+//   { id: 1, name: "Paket Private Coaching 8 Sesi" },
+//   { id: 2, name: "Paket Gym 10 Sesi" },
+//   { id: 3, name: "Paket Yoga 10 Sesi" },
+//   { id: 4, name: "Paket Pillates 10 Sesi" },
+// ];
 
 const initialForm = {
   full_name: "",
@@ -25,11 +26,15 @@ const initialForm = {
   package_id: "",
   notes: "",
 };
+function FieldError({ message }) {
+  return message ? <small style={{ color: "red" }}>{message}</small> : null;
+}
 
 export default function TabTambahCustomer() {
   const [form, setForm] = useState(initialForm);
   const [success, setSuccess] = useState(false);
-  const { submit, error, loading } = useAddCustomer();
+  const { packages } = useGetPackage();
+  const { submit, fieldErrors, loading } = useAddCustomer();
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -64,7 +69,10 @@ export default function TabTambahCustomer() {
 
   return (
     <div>
-      <p>Data Customer Baru</p>
+      <div className="title-tab">
+        {" "}
+        <p>Tambah Pelanggan Baru</p>
+      </div>
 
       <form onSubmit={handleSubmit}>
         <div className="content-input">
@@ -110,7 +118,7 @@ export default function TabTambahCustomer() {
                 value={form.phone}
                 onChange={handleChange}
                 placeholder="Cth. 081........."
-                pattern="[0-9+\s-]{9,16}"
+                pattern="[0-9]{9,16}"
                 required
               />
             </div>
@@ -178,7 +186,7 @@ export default function TabTambahCustomer() {
                 required
               >
                 <option value="">Pilih Program</option>
-                {listPackage.map((item) => (
+                {packages.map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.name}
                   </option>
@@ -193,13 +201,14 @@ export default function TabTambahCustomer() {
           <textarea
             id="notes"
             name="notes"
-            rows="5"
+            rows="3"
             value={form.notes}
             onChange={handleChange}
           />
         </div>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        <FieldError message={fieldErrors.phone} />
+        <FieldError message={fieldErrors.email} />
         {success && (
           <p style={{ color: "green" }}>Customer berhasil disimpan.</p>
         )}
