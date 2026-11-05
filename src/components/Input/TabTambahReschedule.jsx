@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
-import { useCustomerSearch } from "../../hooks/useCustomerSearch";
-import { useRescheduleSession } from "../../hooks/Reschedule/useRescheduleSession";
-import { useGetCustomerSessions } from "../../hooks/Reschedule/useGetCustomerSessions";
+import { useCustomerSearch } from "../../hooks/customer/useCustomerSearch";
+import { useRescheduleSession } from "../../hooks/reschedule/useRescheduleSession";
+import { useGetCustomerSessions } from "../../hooks/reschedule/useGetCustomerSessions";
 
 export default function TabTambahReschedule() {
   const { options: customerOptions, setSearchText } = useCustomerSearch();

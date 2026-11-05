@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useAddPackages } from "../../hooks/useAddPackages";
+import { useAddPackagesCustomer } from "../../hooks/package/useAddPackagesCustomer";
 import Select from "react-select";
-// import useCustomerHooks from "../../hooks/useCustomerHooks";
-import { useCustomerSearch } from "../../hooks/useCustomerSearch";
-import { useGetPackage } from "../../hooks/useGetPackage";
+import { useCustomerSearch } from "../../hooks/Customer/useCustomerSearch";
+import { useGetPackage } from "../../hooks/package/useGetPackage";
 
 function FieldError({ message }) {
   return message ? <small style={{ color: "red" }}>{message}</small> : null;
@@ -15,7 +14,7 @@ const initialForm = {
 };
 
 export default function TabTambahPaket() {
-  const { submit, loading, fieldErrors } = useAddPackages();
+  const { submit, loading, fieldErrors } = useAddPackagesCustomer();
   const [form, setForm] = useState(initialForm);
   const [customer, setCustomer] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -112,11 +111,13 @@ export default function TabTambahPaket() {
                 <option value="">
                   {customer ? "Pilih Paket" : "Pilih customer dulu"}
                 </option>
-                {packages.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name}
-                  </option>
-                ))}
+                {packages
+                  .filter((p) => p.status === "active")
+                  .map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name}
+                    </option>
+                  ))}
               </select>
               <FieldError message={fieldErrors.package_id} />
             </div>

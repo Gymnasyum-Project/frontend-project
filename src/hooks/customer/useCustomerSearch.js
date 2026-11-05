@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getCustomer } from "../services/customerService";
-import useDebounce from "./useDebounce";
+import { getCustomer } from "../../services/customerService";
+import useDebounce from "../useDebounce";
 
 export function useCustomerSearch() {
   const [searchText, setSearchText] = useState("");

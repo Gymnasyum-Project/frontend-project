@@ -1,7 +1,7 @@
-import { useCallback, useState } from "react";
-import { addPackages } from "../services/packageService";
+import { useState, useCallback } from "react";
+import { addAttendance } from "../../services/attendanceService";
 
-export function useAddPackages() {
+export function useAddAttendance() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
@@ -11,7 +11,7 @@ export function useAddPackages() {
     setError(null);
     setFieldErrors({});
     try {
-      return await addPackages(payload);
+      return await addAttendance(payload);
     } catch (err) {
       const apiError = err.response?.data?.error;
       if (apiError?.details?.length) {
@@ -27,6 +27,5 @@ export function useAddPackages() {
       setLoading(false);
     }
   }, []);
-
-  return { submit, loading, error, fieldErrors };
+  return { submit, error, loading, fieldErrors };
 }

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import useLogout from "../../../hooks/useLogout";
+import useLogout from "../../../hooks/auth/useLogout";
 import { useState } from "react";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import { LuDumbbell } from "react-icons/lu";

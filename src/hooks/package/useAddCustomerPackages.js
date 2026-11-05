@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { addCustomerPackages } from "../services/customerService";
+import { addCustomerPackages } from "../../services/customerService";
 
 export function useAddCustomerPackages(customerId) {
   const [loading, setLoading] = useState(false);

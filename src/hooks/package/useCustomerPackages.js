@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
-import { getPackages } from "../services/packageService";
+import { getCustomerPackages } from "../../services/customerService";
 
-export function useGetPackage() {
+export function useCustomerPackages(customerId) {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setPackages([]);
+    if (!customerId) {
+      setLoading(false);
+      return;
+    }
+
     let cancelled = false;
     setLoading(true);
 
-    getPackages()
+    getCustomerPackages(customerId)
       .then((data) => {
         if (!cancelled) {
           setPackages(data);
@@ -21,6 +26,6 @@ export function useGetPackage() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [customerId]);
   return { packages, loading };
 }

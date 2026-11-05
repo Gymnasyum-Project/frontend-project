@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
-import { CustomerDummy } from "../services/dummyData/dashboardDummy";
-import { getCustomer } from "../services/customerService";
+import { CustomerDummy } from "../../services/dummyData/dashboardDummy";
+import { getCustomer } from "../../services/customerService";
 
 const USE_DUMMY = false;
 
@@ -30,7 +30,9 @@ export default function useCustomerHooks(page = 1, limit = 20, search = "") {
         if (!cancelled) setLoading(false);
       });
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [page, limit, search]);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAddCustomer } from "../../hooks/useAddCustomer";
-import { useGetPackage } from "../../hooks/useGetPackage";
+import { useAddCustomer } from "../../hooks/customer/useAddCustomer";
+import { useGetPackage } from "../../hooks/package/useGetPackage";
 
 const listSegment = [
   { value: "ibu_ibu", label: "Ibu-ibu" },
@@ -8,14 +8,6 @@ const listSegment = [
   { value: "menengah_atas", label: "Menengah ke Atas" },
   { value: "lainnya", label: "Lainnya" },
 ];
-
-// const listPackage = [
-//   { id: 1, name: "Paket Private Coaching 8 Sesi" },
-//   { id: 2, name: "Paket Gym 10 Sesi" },
-//   { id: 3, name: "Paket Yoga 10 Sesi" },
-//   { id: 4, name: "Paket Pillates 10 Sesi" },
-// ];
-
 const initialForm = {
   full_name: "",
   email: "",

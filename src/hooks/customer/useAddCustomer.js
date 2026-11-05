@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { addCustomer } from "../services/customerService";
+import { addCustomer } from "../../services/customerService";
 
 export function useAddCustomer() {
   const [loading, setLoading] = useState(false);

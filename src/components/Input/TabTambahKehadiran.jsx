@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
-import { useAddAttendance } from "../../hooks/useAddAttendance";
-import { useCustomerSearch } from "../../hooks/useCustomerSearch";
-import { useCustomerPackages } from "../../hooks/useCustomerPackages";
+import { useAddAttendance } from "../../hooks/attendance/useAddAttendance";
+import { useCustomerSearch } from "../../hooks/Customer/useCustomerSearch";
+import { useCustomerPackages } from "../../hooks/package/useCustomerPackages";
 
 const STATUS_OPTIONS = [
   { value: "attended", label: "Hadir" },
@@ -25,7 +25,7 @@ function FieldError({ message }) {
 
 export default function TabTambahKehadiran() {
   const [form, setForm] = useState(initialForm);
-  const [customer, setCustomer] = useState(null); // { value, label }
+  const [customer, setCustomer] = useState(null);
   const [success, setSuccess] = useState(false);
 
   const { options: customerOptions, setSearchText } = useCustomerSearch();
