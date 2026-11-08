@@ -8,6 +8,7 @@ import { IoPeople, IoSettings } from "react-icons/io5";
 import { PiFlagFill } from "react-icons/pi";
 import { FaPencil } from "react-icons/fa6";
 import { COLORS } from "../../../styles/color";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
 import "./style.css";
 
@@ -15,6 +16,8 @@ function SidebarComponent() {
   const location = useLocation();
   const currentPath = location.pathname;
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const { value: user, setValue: setUser } = useLocalStorage("user", null);
+
   const logout = useLogout();
 
   return (
@@ -99,8 +102,8 @@ function SidebarComponent() {
               <p>AD</p>
             </div>
             <div>
-              <p>Admin</p>
-              <p style={{ fontSize: "12px" }}>admin@gymnasyum.id</p>
+              <p>{user?.role}</p>
+              <p style={{ fontSize: "12px" }}>{user?.name}</p>
             </div>
           </div>
         </div>

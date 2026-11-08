@@ -1,0 +1,34 @@
+.container-setting {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+.table-informasi {
+  width: 100%;
+}
+.table-informasi tbody tr td {
+  padding: 0.3rem;
+}
+.table-informasi tbody tr td:first-child {
+  text-align: left;
+}
+
+.table-informasi tbody tr td:last-child {
+  text-align: right;
+}
+.info-sistem {
+  height: fit-content;
+}
+
+@media (max-width: 768px) {
+  .container-setting {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .container-setting {
+    display: flex;
+    flex-direction: column;
+  }
+}

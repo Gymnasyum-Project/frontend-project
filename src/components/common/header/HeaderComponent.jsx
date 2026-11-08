@@ -68,16 +68,6 @@ function HeaderComponent({ title, subTitle, userInitials = "AD" }) {
                 role="menuitem"
                 className="header_dropdown_item"
                 onClick={() => {
-                  navigate("/segments");
-                }}
-              >
-                Segment
-              </button>
-              <button
-                type="button"
-                role="menuitem"
-                className="header_dropdown_item"
-                onClick={() => {
                   setMenuOpen(false);
                   setConfirmOpen(true);
                 }}

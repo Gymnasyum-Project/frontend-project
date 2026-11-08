@@ -5,7 +5,6 @@ import ErrorComponent from "../common/ErrorComponent/Errorcomponent";
 import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
 import { Link } from "react-router-dom";
 import { LABEL_COLORS } from "../../styles/color";
-// import formatDate from "../common/formatDate";
 import DetailFirst from "./DetailFirst";
 import DetailSecond from "./DetailSecond";
 import DetailThree from "./DetailThree";

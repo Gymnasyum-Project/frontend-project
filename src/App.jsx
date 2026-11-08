@@ -9,7 +9,6 @@ import LoginPage from "./pages/LoginPage";
 import DetailCustomerPage from "./pages/DetailCustomerPage";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import PackagePage from "./pages/PackagePage";
-import SegmentPage from "./pages/SegmentPage";
 import { getToken } from "./utils/auth";
 
 function PublicRoute() {
@@ -39,7 +38,6 @@ function App() {
             <Route path="/input-page" element={<InputPage />} />
             <Route path="/setting" element={<SettingPage />} />
             <Route path="/packages" element={<PackagePage />} />
-            <Route path="/segments" element={<SegmentPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
