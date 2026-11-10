@@ -1,4 +1,4 @@
-import useCustomerHooks from "../../hooks/Customer/useCustomerHooks";
+import useCustomerHooks from "../../hooks/customer/useCustomerHooks";
 import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 import ErrorComponent from "../common/ErrorComponent/ErrorComponent";
 import LoadingComponent from "../common/loading/LoadingComponent";
