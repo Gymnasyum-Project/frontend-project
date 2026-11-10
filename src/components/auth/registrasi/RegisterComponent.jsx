@@ -4,7 +4,7 @@ import Field from "../components/Field.jsx";
 import Footer from "../components/Footer.jsx";
 import BackButton from "../components/BackButton.jsx";
 import "../auth.css";
-import useRegister from "../../../hooks/useRegister.js";
+import useRegister from "../../../hooks/auth/useRegister.js";
 
 function RegisterComponent({ onLogin }) {
   const [name, setName] = React.useState("");

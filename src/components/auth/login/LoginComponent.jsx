@@ -2,7 +2,7 @@ import React from "react";
 import Brand from "../components/Brand.jsx";
 import Field from "../components/Field.jsx";
 import Footer from "../components/Footer.jsx";
-import useLogin from "../../../hooks/useLogin.js";
+import useLogin from "../../../hooks/auth/useLogin.js";
 import { FiCheckCircle } from "react-icons/fi";
 import { useLocation, useNavigate } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { login } from "../services/authService";
+import { login } from "../../services/authService";
 
 export default function useLogin() {
   const [loading, setLoading] = useState(false);

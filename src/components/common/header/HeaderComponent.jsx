@@ -1,11 +1,13 @@
 import "./HeaderComponent.css";
-import useLogout from "../../../hooks/useLogout";
+import useLogout from "../../../hooks/auth/useLogout";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 function HeaderComponent({ title, subTitle, userInitials = "AD" }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const navigate = useNavigate();
   const menuRef = useRef(null);
   const logout = useLogout();
 
@@ -51,6 +53,16 @@ function HeaderComponent({ title, subTitle, userInitials = "AD" }) {
 
           {menuOpen && (
             <div className="header_dropdown" role="menu">
+              <button
+                type="button"
+                role="menuitem"
+                className="header_dropdown_item"
+                onClick={() => {
+                  navigate("/packages");
+                }}
+              >
+                Paket
+              </button>
               <button
                 type="button"
                 role="menuitem"

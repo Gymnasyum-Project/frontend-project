@@ -38,7 +38,10 @@ function CustomerTopPriority({ top_priority = [], styleCard, LABEL_COLORS }) {
             </p>
           </div>
           <div style={{ textAlign: "end" }}>
-            <button onClick={() => {}} className="btn-lihat-semua">
+            <button
+              onClick={() => navigate("/priority-followup")}
+              className="btn-lihat-semua"
+            >
               Lihat Semua
             </button>
           </div>

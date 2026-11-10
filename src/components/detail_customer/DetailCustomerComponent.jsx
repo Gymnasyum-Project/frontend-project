@@ -1,11 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
-import useCustomerDetail from "../../hooks/useDetailCustomer";
+import { useDetailCustomer } from "../../hooks/Customer/useDetailCustomer";
 import LoadingComponent from "../common/loading/LoadingComponent";
 import ErrorComponent from "../common/ErrorComponent/Errorcomponent";
 import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
 import { Link } from "react-router-dom";
 import { LABEL_COLORS } from "../../styles/color";
-// import formatDate from "../common/formatDate";
 import DetailFirst from "./DetailFirst";
 import DetailSecond from "./DetailSecond";
 import DetailThree from "./DetailThree";
@@ -42,7 +41,7 @@ const labelStyle = (value) => {
 export default function DetailCustomerComponent() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data, loading, error } = useCustomerDetail(id);
+  const { data, loading, error } = useDetailCustomer(id);
   if (loading) return <LoadingComponent />;
   if (error) return <ErrorComponent />;
   if (!data) return <EmptyComponent />;

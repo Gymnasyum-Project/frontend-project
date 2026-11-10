@@ -1,11 +1,12 @@
 import SidebarComponent from "../components/common/sidebar/SidebarComponent";
 import HeaderComponent from "../components/common/header/HeaderComponent";
+import InputComponent from "../components/Input/InputComponent";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
 
 function InputPage() {
   const [sidebar, setSidebar] = useState(false);
-  const title = "Input Data";
+  const title = "Input Data Customer";
   const subTitle = "Tambah data cstomer, kehadiran, paket dan reschadule";
   return (
     <div className="page-layout">
@@ -32,7 +33,7 @@ function InputPage() {
           </button>
           <HeaderComponent title={title} subTitle={subTitle} />
         </div>
-        {/* <InputPageComponent /> */}
+        <InputComponent />
       </main>
     </div>
   );

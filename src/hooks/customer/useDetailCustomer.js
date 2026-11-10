@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { getCustomerById } from "../services/customerService";
+import { getCustomerById } from "../../services/customerService";
 
-export default function useDetailCustomer(id) {
+export function useDetailCustomer(id) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
