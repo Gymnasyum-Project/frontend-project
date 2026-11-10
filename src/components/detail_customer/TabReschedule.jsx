@@ -1,4 +1,4 @@
-import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
+import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 import formatDateTime from "../common/formatDate";
 export default function TabReschedule({ data }) {
   if (data.length === 0) {

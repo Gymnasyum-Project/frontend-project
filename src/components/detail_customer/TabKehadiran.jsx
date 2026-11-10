@@ -1,4 +1,4 @@
-import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
+import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 export default function TabKehadiran({
   SESSION_STATUS,
   packageById,

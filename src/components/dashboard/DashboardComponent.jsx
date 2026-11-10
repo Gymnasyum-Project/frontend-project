@@ -4,8 +4,8 @@ import useDashboardSummary from "../../hooks/useDashboardSummary";
 import CustomerTopPriority from "./CustomerTopPriority";
 import { LABEL_COLORS } from "../../styles/color";
 import LoadingComponent from "../common/loading/LoadingComponent";
-import ErrorComponent from "../common/ErrorComponent/Errorcomponent";
-import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
+import ErrorComponent from "../common/ErrorComponent/ErrorComponent";
+import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 
 import "./DashboardComponent.css";
 
