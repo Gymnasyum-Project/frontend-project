@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useDetailCustomer } from "../../hooks/Customer/useDetailCustomer";
+import { useDetailCustomer } from "../../hooks/customer/useDetailCustomer";
 import LoadingComponent from "../common/loading/LoadingComponent";
 import ErrorComponent from "../common/ErrorComponent/ErrorComponent";
 import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
