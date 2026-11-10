@@ -2,8 +2,8 @@ import "./SettingComponent.css";
 import { useSetting } from "../../hooks/setting/useSetting";
 import { useEffect, useState } from "react";
 import LoadingComponent from "../common/loading/LoadingComponent";
-import ErrorComponent from "../common/ErrorComponent/Errorcomponent";
-import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
+import ErrorComponent from "../common/ErrorComponent/ErrorComponent";
+import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 import { useGetModelVersion } from "../../hooks/setting/useGetModelVersion";
 import { useGetTotalCustomer } from "../../hooks/setting/useGetTotalCustomer";
 
