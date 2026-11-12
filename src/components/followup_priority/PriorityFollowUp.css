@@ -1,0 +1,122 @@
+.fu-page {
+  --teal: #0f766e;
+  --teal-dark: #0b5f58;
+  --teal-soft: #e6f2f0;
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --red: #dc2626;
+  --red-soft: #fee2e2;
+  --amber: #d97706;
+  --amber-soft: #fef3c7;
+
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 14px;
+}
+.fu-page *, .fu-page *::before, .fu-page *::after { box-sizing: border-box; }
+.fu-page button { font-family: inherit; cursor: pointer; }
+.fu-page button:focus-visible,
+.fu-page input:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+/* ---------- Avatar ---------- */
+.fu-user__avatar {
+  width: 34px; height: 34px; border-radius: 50%; background: var(--teal-soft); color: var(--teal);
+  display: grid; place-items: center; font-size: 12px; font-weight: 700;
+}
+.fu-user__avatar--solid { background: var(--teal); color: #fff; border-radius: 12px; width: 38px; height: 38px; }
+
+/* ---------- Topbar ---------- */
+.fu-main { flex: 1; min-width: 0; }
+.fu-topbar {
+  position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px; background: #fff; border-bottom: 1px solid var(--border);
+}
+.fu-topbar h1 { margin: 0; font-size: 17px; font-weight: 700; }
+.fu-topbar p { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
+.fu-topbar__right { display: flex; align-items: center; gap: 12px; }
+.fu-search {
+  display: flex; align-items: center; gap: 8px; width: 270px; padding: 9px 12px;
+  background: #f1f5f9; border: 1px solid var(--border); border-radius: 10px;
+}
+.fu-search input { flex: 1; border: 0; outline: 0; background: transparent; font-size: 13px; color: var(--text); }
+.fu-icon-btn {
+  position: relative; width: 38px; height: 38px; border-radius: 10px;
+  border: 1px solid var(--border); background: #fff;
+}
+.fu-notif { position: absolute; top: 8px; right: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+
+/* ---------- Konten ---------- */
+.fu-content { max-width: 1040px; padding: 22px 24px 40px; }
+.fu-alert {
+  display: flex; gap: 12px; align-items: center; padding: 14px 16px; margin-bottom: 22px;
+  background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; color: #b91c1c;
+}
+.fu-alert__icon {
+  width: 30px; height: 30px; border-radius: 8px; background: var(--red-soft);
+  display: grid; place-items: center; font-weight: 800; flex-shrink: 0;
+}
+.fu-alert strong { font-size: 13.5px; }
+.fu-alert p { margin: 2px 0 0; font-size: 12px; }
+
+.fu-section { margin-bottom: 26px; }
+.fu-section__title {
+  display: flex; align-items: center; gap: 8px; margin: 0 0 12px;
+  font-size: 13.5px; font-weight: 600; color: #334155;
+}
+.fu-count { background: #e8edf2; color: #475569; font-size: 11px; padding: 2px 8px; border-radius: 999px; }
+.fu-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+.fu-dot--at-risk { background: var(--red); }
+.fu-dot--need-attention { background: var(--amber); }
+
+/* ---------- Kartu customer ---------- */
+.fu-card {
+  display: flex; align-items: center; gap: 14px; padding: 16px 18px; margin-bottom: 12px;
+  background: var(--card); border-radius: 14px; box-shadow: 0 1px 3px rgba(15, 23, 42, .06);
+}
+.fu-avatar {
+  width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+  display: grid; place-items: center; font-size: 13px; font-weight: 700;
+}
+.fu-avatar--at-risk { background: var(--red-soft); color: var(--red); }
+.fu-avatar--need-attention { background: var(--amber-soft); color: var(--amber); }
+.fu-info { flex: 1; min-width: 0; }
+.fu-info__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.fu-nama { font-weight: 600; }
+.fu-tag { font-size: 11px; padding: 2px 8px; border-radius: 6px; background: #eef2f6; color: #475569; }
+.fu-badge {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600;
+  padding: 2px 9px; border-radius: 999px;
+}
+.fu-badge--at-risk { background: var(--red-soft); color: #b91c1c; }
+.fu-badge--at-risk .fu-dot { background: var(--red); width: 6px; height: 6px; }
+.fu-badge--need-attention { background: var(--amber-soft); color: #b45309; }
+.fu-badge--need-attention .fu-dot { background: var(--amber); width: 6px; height: 6px; }
+.fu-meta { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 7px; font-size: 12px; color: var(--muted); }
+.fu-meta b { color: #1e293b; font-weight: 600; }
+.fu-meta .fu-danger { color: var(--red); }
+
+.fu-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.fu-btn { padding: 8px 14px; border-radius: 9px; font-size: 12px; font-weight: 600; transition: background .15s; }
+.fu-btn--outline { background: #fff; color: var(--teal); border: 1px solid #9fcfc9; }
+.fu-btn--outline:hover { background: var(--teal-soft); }
+.fu-btn--primary { background: var(--teal); color: #fff; border: 1px solid var(--teal); }
+.fu-btn--primary:hover { background: var(--teal-dark); }
+.fu-empty { text-align: center; color: var(--muted); padding: 40px 0; }
+
+/* ---------- Responsif ---------- */
+@media (max-width: 900px) {
+  .fu-search { width: 180px; }
+}
+@media (max-width: 720px) {
+  .fu-card { flex-wrap: wrap; }
+  .fu-actions { width: 100%; }
+  .fu-btn { flex: 1; }
+  .fu-topbar p { display: none; }
+  .fu-search { display: none; }
+}

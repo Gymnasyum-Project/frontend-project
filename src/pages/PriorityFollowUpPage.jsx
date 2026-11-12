@@ -2,8 +2,9 @@ import SidebarComponent from "../components/common/sidebar/SidebarComponent";
 import HeaderComponent from "../components/common/header/HeaderComponent";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
+import PriorityFollowUp from "../components/followup_priority/PriorityFollowUp";
 
-function PirorityFollowUpPage() {
+function PriorityFollowUpPage() {
   const [sidebar, setSidebar] = useState(false);
   const title = "Prioritas Follow-up";
   const subTitle = "Customer yang memerlukan tindak lanjut segera";
@@ -32,10 +33,10 @@ function PirorityFollowUpPage() {
           </button>
           <HeaderComponent title={title} subTitle={subTitle} />
         </div>
-        {/* <PirorityFollowUpComponent /> */}
+        <PriorityFollowUp />
       </main>
     </div>
   );
 }
 
-export default PirorityFollowUpPage;
+export default PriorityFollowUpPage;
