@@ -1,5 +1,5 @@
 import { LABEL_COLORS } from "../../styles/color";
-import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
+import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 import { IoSearch } from "react-icons/io5";
 import DataTable from "../common/DataTable/DataTable";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +53,7 @@ function TableCustomer({
     <div style={{ padding: "0 1rem" }}>
       <div style={card}>
         <div className="head-table">
-          <div className="title-tabel">
+          <div className="title-tab">
             <p>List Customer</p>
           </div>
           <div className="header_search">

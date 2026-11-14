@@ -1,5 +1,6 @@
 import SidebarComponent from "../components/common/sidebar/SidebarComponent";
 import HeaderComponent from "../components/common/header/HeaderComponent";
+import SettingComponent from "../components/setting/SettingComponent";
 import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 
@@ -32,7 +33,7 @@ function SettingPage() {
           </button>
           <HeaderComponent title={title} subTitle={subTitle} />
         </div>
-        {/* <SettingComponent /> */}
+        <SettingComponent />
       </main>
     </div>
   );

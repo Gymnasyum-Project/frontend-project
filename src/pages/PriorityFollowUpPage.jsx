@@ -2,7 +2,11 @@ import SidebarComponent from "../components/common/sidebar/SidebarComponent";
 import HeaderComponent from "../components/common/header/HeaderComponent";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
+<<<<<<< HEAD
 import PriorityFollowUp from "../components/followup_priority/PriorityFollowUp";
+=======
+import PriorityFollowUpComponent from "../components/followup_priority/PriorityFollowUpComponent";
+>>>>>>> backup-pekerjaan-lokal
 
 function PriorityFollowUpPage() {
   const [sidebar, setSidebar] = useState(false);
@@ -33,7 +37,11 @@ function PriorityFollowUpPage() {
           </button>
           <HeaderComponent title={title} subTitle={subTitle} />
         </div>
+<<<<<<< HEAD
         <PriorityFollowUp />
+=======
+        <PriorityFollowUpComponent />
+>>>>>>> backup-pekerjaan-lokal
       </main>
     </div>
   );

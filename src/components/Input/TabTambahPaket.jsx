@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAddPackagesCustomer } from "../../hooks/package/useAddPackagesCustomer";
 import Select from "react-select";
-import { useCustomerSearch } from "../../hooks/Customer/useCustomerSearch";
+import { useCustomerSearch } from "../../hooks/customer/useCustomerSearch";
 import { useGetPackage } from "../../hooks/package/useGetPackage";
 
 function FieldError({ message }) {

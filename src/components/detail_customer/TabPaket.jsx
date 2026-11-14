@@ -1,4 +1,4 @@
-import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
+import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 
 const PACKAGE_STATUS = {
   active: { label: "Aktif", className: "paket-badge paket-badge--active" },

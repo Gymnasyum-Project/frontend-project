@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import { useAddAttendance } from "../../hooks/attendance/useAddAttendance";
-import { useCustomerSearch } from "../../hooks/Customer/useCustomerSearch";
+import { useCustomerSearch } from "../../hooks/customer/useCustomerSearch";
 import { useCustomerPackages } from "../../hooks/package/useCustomerPackages";
 
 const STATUS_OPTIONS = [

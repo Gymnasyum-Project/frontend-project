@@ -1,11 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useDetailCustomer } from "../../hooks/Customer/useDetailCustomer";
+import { useDetailCustomer } from "../../hooks/customer/useDetailCustomer";
 import LoadingComponent from "../common/loading/LoadingComponent";
-import ErrorComponent from "../common/ErrorComponent/Errorcomponent";
-import EmptyComponent from "../common/ErrorComponent/Emptycomponent";
+import ErrorComponent from "../common/ErrorComponent/ErrorComponent";
+import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 import { Link } from "react-router-dom";
 import { LABEL_COLORS } from "../../styles/color";
-// import formatDate from "../common/formatDate";
 import DetailFirst from "./DetailFirst";
 import DetailSecond from "./DetailSecond";
 import DetailThree from "./DetailThree";
