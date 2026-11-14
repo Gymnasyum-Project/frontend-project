@@ -1,11 +1,7 @@
 import "./DataTable.css";
 import AttendanceBar from "../AttendanceBar/AttendanceBar";
 import formatDate from "../formatDate";
-const getInitials = (name) => {
-  const words = name.trim().split(/\s+/);
-  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
-  return (words[0][0] + words[1][0]).toUpperCase();
-};
+import getInitial from "../getInitial";
 
 export default function DataTable({
   filterData,
@@ -51,7 +47,7 @@ export default function DataTable({
                   color: "#ff0000",
                 }}
               >
-                {getInitials(e.full_name)}
+                {getInitial(e.full_name)}
               </div>
               <div>
                 <p>{e.full_name}</p>

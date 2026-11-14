@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
-import { getDataPriority } from "../services/followUpService";
+import { getPriorityFollowUp } from "../../services/priorityFollowUpService";
 
-export default function useDashboardSummary() {
+export default function useGetPriority() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchData = useCallback(() => {
-    return getDataPriority()
+    return getPriorityFollowUp()
       .then((res) => {
         setData(res);
         setError(null);
