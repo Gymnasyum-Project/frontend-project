@@ -25,6 +25,5 @@ export default function usePriorityFollowUp() {
     setError(null);
     fetchData();
   }, [fetchData]);
-  console.log(dataFollowUp);
   return { dataFollowUp, loading, error, refetch };
 }
