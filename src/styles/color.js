@@ -23,6 +23,7 @@ export const COLORS = {
   yellow: {
     50: "#faf5c8",
     100: "#ffc800",
+    150: "#f59e0b",
   },
   red: {
     50: "#ffc4c4",

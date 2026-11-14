@@ -53,7 +53,7 @@ function TableCustomer({
     <div style={{ padding: "0 1rem" }}>
       <div style={card}>
         <div className="head-table">
-          <div className="title-tabel">
+          <div className="title-tab">
             <p>List Customer</p>
           </div>
           <div className="header_search">

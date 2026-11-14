@@ -2,14 +2,13 @@ import SidebarComponent from "../components/common/sidebar/SidebarComponent";
 import HeaderComponent from "../components/common/header/HeaderComponent";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
-import useGetPriority from "../hooks/useGetPriority";
+import PriorityFollowUpComponent from "../components/followup_priority/PriorityFollowUpComponent";
 
-function PirorityFollowUpPage() {
+function PriorityFollowUpPage() {
   const [sidebar, setSidebar] = useState(false);
   const title = "Prioritas Follow-up";
   const subTitle = "Customer yang memerlukan tindak lanjut segera";
-  const { data, loading, error, refetch } = useGetPriority();
-  console.log(data);
+
   return (
     <div className="page-layout">
       <aside className={`sidebar ${sidebar ? "open" : ""}`}>
@@ -34,10 +33,10 @@ function PirorityFollowUpPage() {
           </button>
           <HeaderComponent title={title} subTitle={subTitle} />
         </div>
-        {/* <PirorityFollowUpComponent /> */}
+        <PriorityFollowUpComponent />
       </main>
     </div>
   );
 }
 
-export default PirorityFollowUpPage;
+export default PriorityFollowUpPage;

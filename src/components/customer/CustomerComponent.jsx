@@ -38,10 +38,9 @@ function CustomerComponent() {
     setPage(1);
   }, [debouncedSearch, activeLabel, sortBy]);
 
-  // if(loading) return <LoadingComponent/>
   if (loading && !data) return <LoadingComponent />;
   if (error) return <ErrorComponent message={error} onRetry={refetch} />;
-  // if(!data) return <EmptyComponent/>
+  if (!data) return <EmptyComponent />;
 
   const { data: customers = [], meta } = data ?? {};
 

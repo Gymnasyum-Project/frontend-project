@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import { getDataPriority } from "../services/followUpService";
+import { getPriorityFollowUp } from "../../services/priorityFollowUpService";
 
-export default function useDashboardSummary() {
-  const [data, setData] = useState(null);
+export default function usePriorityFollowUp() {
+  const [dataFollowUp, setDataFollowUp] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchData = useCallback(() => {
-    return getDataPriority()
+    return getPriorityFollowUp()
       .then((res) => {
-        setData(res);
+        setDataFollowUp(res);
         setError(null);
       })
       .catch((err) => setError(err.message))
@@ -20,12 +20,11 @@ export default function useDashboardSummary() {
     fetchData();
   }, [fetchData]);
 
-  // Dipanggil dari tombol "Coba lagi" (di event handler, bukan di effect)
   const refetch = useCallback(() => {
     setLoading(true);
     setError(null);
     fetchData();
   }, [fetchData]);
-
-  return { data, loading, error, refetch };
+  console.log(dataFollowUp);
+  return { dataFollowUp, loading, error, refetch };
 }

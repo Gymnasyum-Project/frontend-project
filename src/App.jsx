@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import CustomerPage from "./pages/CustomerPage";
-import PirorityFollowUpPage from "./pages/PirorityFollowUpPage";
+import PriorityFollowUpPage from "./pages/PriorityFollowUpPage";
 import InputPage from "./pages/InputPage";
 import SettingPage from "./pages/SettingPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -33,7 +33,7 @@ function App() {
             <Route path="/customer/:id" element={<DetailCustomerPage />} />
             <Route
               path="/priority-followup"
-              element={<PirorityFollowUpPage />}
+              element={<PriorityFollowUpPage />}
             />
             <Route path="/input-page" element={<InputPage />} />
             <Route path="/setting" element={<SettingPage />} />
