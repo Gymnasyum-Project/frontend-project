@@ -20,14 +20,7 @@ export default function CardPriority({ data, onDetail }) {
   const waNumber = (data.phone ?? "").replace(/\D/g, "").replace(/^0/, "62");
   const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
   return (
-    <div
-      className="card"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "0.2fr 3fr 1fr",
-        alignItems: "center",
-      }}
-    >
+    <div className="card card-container">
       <div
         className="initial-name"
         style={{
@@ -73,7 +66,7 @@ export default function CardPriority({ data, onDetail }) {
             </span>
             {data.priority_score}%
           </p>
-          <p>
+          <p className="hide-tablet active-mobile">
             <span style={{ color: COLORS.gray[400], fontSize: "0.8rem" }}>
               Terakhir hadir:{" "}
             </span>
@@ -83,9 +76,9 @@ export default function CardPriority({ data, onDetail }) {
             <span style={{ color: COLORS.gray[400], fontSize: "0.8rem" }}>
               Sisa Paket:{" "}
             </span>
-            {data.remaining_sessions} sesi
+            {data.remaining_sessions}
           </p>
-          <p>
+          <p className="hide-mobile">
             <span style={{ color: COLORS.gray[400], fontSize: "0.8rem" }}>
               No. Hp:{" "}
             </span>
@@ -103,7 +96,7 @@ export default function CardPriority({ data, onDetail }) {
           Lihat Detail
         </button>
         <button
-          className="btn"
+          className="btn hide-mobile"
           type="button"
           disabled={loading}
           onClick={handleSendFollowUp}
@@ -113,7 +106,7 @@ export default function CardPriority({ data, onDetail }) {
             color: COLORS.gray[50],
           }}
         >
-          <FaGraduationCap /> {loading ? "Memuat..." : "Kirim Follow-up"}
+          <FaGraduationCap /> {loading ? "Memuat..." : "Follow-up"}
         </button>
       </div>
       {open && (

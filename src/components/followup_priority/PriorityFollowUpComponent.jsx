@@ -1,20 +1,25 @@
 import { IoIosWarning } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
-import { useMemo, useState } from "react";
 import "./PriorityFollowUpComponent.css";
 import { useNavigate } from "react-router-dom";
 import useGetPriority from "../../hooks/priorityFollowUp/useGetPriority";
 import { COLORS } from "../../styles/color";
 import CardPriority from "./CardPriority";
+import ErrorComponent from "../common/ErrorComponent/ErrorComponent";
+import LoadingComponent from "../common/loading/LoadingComponent";
+import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 
 export default function PriorityFollowUpComponent() {
-  const [cari, setCari] = useState("");
   const navigate = useNavigate();
   const { data, loading, error, refetch } = useGetPriority();
 
-  if (!data) {
-    return <div>Loading... atau Data kosong</div>;
+  if (loading) {
+    return <LoadingComponent />;
   }
+  if (!data) {
+    return <EmptyComponent />;
+  }
+  if (error) return <ErrorComponent message={error} onRetry={refetch} />;
 
   const dataAtrisk = data.at_risk;
   const dataNeedAttention = data.need_attention;
