@@ -17,7 +17,7 @@ function CustomerTopPriority({ top_priority = [], styleCard, LABEL_COLORS }) {
           }}
         >
           <div>
-            <p>Prioritas Follow-up</p>
+            <p>Prioritas Follow-Up</p>
             <p className="gray-font">
               5 customer dengan resiko tertinggi yang perlu segera di hubungi
             </p>

@@ -67,7 +67,7 @@ function SidebarComponent() {
             <div
               className={`tab ${currentPath === "/priority-followup" ? "active" : ""}`}
             >
-              <PiFlagFill /> Prioritas Follow-up
+              <PiFlagFill /> Prioritas Follow-Up
             </div>
           </Link>
           <Link to={"/input-page"}>
