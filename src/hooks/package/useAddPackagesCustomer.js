@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { addPackages } from "../../services/packageService";
+import { addCustomerPackages } from "../../services/packageService";
 
 export function useAddPackagesCustomer() {
   const [loading, setLoading] = useState(false);
@@ -11,7 +11,7 @@ export function useAddPackagesCustomer() {
     setError(null);
     setFieldErrors({});
     try {
-      return await addPackages(payload);
+      return await addCustomerPackages(payload);
     } catch (err) {
       const apiError = err.response?.data?.error;
       if (apiError?.details?.length) {

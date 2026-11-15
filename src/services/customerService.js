@@ -60,8 +60,3 @@ export const getCustomerPackages = async (customerId) => {
   const response = await api.get(`/customer-packages/${customerId}`);
   return response.data.data;
 };
-
-export const addCustomerPackages = async (customerId, payload) => {
-  const response = await api.post(`/customer-packages/${customerId}`, payload);
-  return response.data.data;
-};

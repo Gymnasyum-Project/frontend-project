@@ -2,19 +2,12 @@ import CardFirst from "./CardFirst";
 import ChartCard from "./ChartCard";
 import useDashboardSummary from "../../hooks/useDashboardSummary";
 import CustomerTopPriority from "./CustomerTopPriority";
-import { LABEL_COLORS } from "../../styles/color";
+import { LABEL_COLORS, card } from "../../styles/color";
 import LoadingComponent from "../common/loading/LoadingComponent";
 import ErrorComponent from "../common/ErrorComponent/ErrorComponent";
 import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 
 import "./DashboardComponent.css";
-
-const card = {
-  backgroundColor: "#F9FAFB",
-  boxShadow: "0 0 0 2px rgba(203, 213, 225, 0.2)",
-  padding: "1rem",
-  borderRadius: "10px",
-};
 
 function DasboardComponent() {
   const { data, loading, error, refetch } = useDashboardSummary();

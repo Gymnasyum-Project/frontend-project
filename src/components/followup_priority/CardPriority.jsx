@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaGraduationCap } from "react-icons/fa6";
 import { FaCircle } from "react-icons/fa";
-import { COLORS } from "../../styles/color";
+import { COLORS, labelStyle } from "../../styles/color";
 import formatDate from "../common/formatDate";
 import getInitial from "../common/getInitial";
 import useGetDraft from "../../hooks/priorityFollowUp/useGetDraft";
@@ -10,6 +10,8 @@ export default function CardPriority({ data, onDetail }) {
   const { loading, error, fetchDraft } = useGetDraft();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+  const label = data.label ?? null;
+  const labelText = label ?? "Belum dianalisis";
 
   const handleSendFollowUp = async () => {
     const result = await fetchDraft(data.id);
@@ -36,52 +38,29 @@ export default function CardPriority({ data, onDetail }) {
         <div className="data-cust-mid">
           {" "}
           <p style={{ display: "flex", alignItems: "center" }}>
-            <strong>{data.full_name}</strong>
+            {data.full_name}
           </p>
-          <p
-            className="card-label "
-            style={{
-              backgroundColor: COLORS.gray[200],
-            }}
-          >
-            {data.segment}
-          </p>
-          <p
-            className="card-label label"
-            style={{
-              backgroundColor:
-                data.label === "At Risk" ? COLORS.red[50] : COLORS.yellow[50],
-              color:
-                data.label === "At Risk" ? COLORS.red[100] : COLORS.yellow[150],
-            }}
-          >
+          <p className="font-gray">{data.segment}</p>
+          <p className="card-label label" style={labelStyle(label)}>
             <FaCircle size={9} />
-            {data.label}
+            {labelText}
           </p>
         </div>
         <div className="data-cust-mid">
           <p>
-            <span style={{ color: COLORS.gray[400], fontSize: "0.8rem" }}>
-              Skor:{" "}
-            </span>
+            <span className="font-gray">Skor: </span>
             {data.priority_score}%
           </p>
           <p className="hide-tablet active-mobile">
-            <span style={{ color: COLORS.gray[400], fontSize: "0.8rem" }}>
-              Terakhir hadir:{" "}
-            </span>
+            <span className="font-gray">Terakhir hadir: </span>
             {formatDate(data.last_visit)}
           </p>
           <p>
-            <span style={{ color: COLORS.gray[400], fontSize: "0.8rem" }}>
-              Sisa Paket:{" "}
-            </span>
+            <span className="font-gray">Sisa paket: </span>
             {data.remaining_sessions}
           </p>
           <p className="hide-mobile">
-            <span style={{ color: COLORS.gray[400], fontSize: "0.8rem" }}>
-              No. Hp:{" "}
-            </span>
+            <span className="font-gray">No. Hp: </span>
             {data.phone}
           </p>
         </div>
@@ -106,7 +85,7 @@ export default function CardPriority({ data, onDetail }) {
             color: COLORS.gray[50],
           }}
         >
-          <FaGraduationCap /> {loading ? "Memuat..." : "Follow-up"}
+          <FaGraduationCap /> {loading ? "Memuat..." : "Follow-Up"}
         </button>
       </div>
       {open && (

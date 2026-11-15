@@ -39,7 +39,7 @@ export default function PriorityFollowUpComponent() {
           <p>Perhatian: 5 customer beresiko tinggi</p>
           <p>
             Customer ini membutuhkan tidankan lanjut. Segera hubungi mereka
-            untuk mencegah curn
+            untuk mencegah churn
           </p>
         </div>
       </div>

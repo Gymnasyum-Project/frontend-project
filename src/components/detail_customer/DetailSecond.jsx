@@ -29,7 +29,7 @@ export default function DetailSecond({ card, data }) {
       <div style={{ ...card }}>
         <p className="font-gray">Reminder Respons</p>
         <p className="font-red">
-          {data.stats.reminder_total_30d}/{data.stats.reminder_responded_30d}
+          {data.stats.reminder_responded_30d}/{data.stats.reminder_total_30d}
         </p>
         <p className="font-gray"> Direspon</p>
       </div>

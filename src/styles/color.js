@@ -36,3 +36,25 @@ export const LABEL_COLORS = {
   "At Risk": "#dc2626",
   "Need Attention": "#f59e0b",
 };
+
+export const labelStyle = (value) => {
+  const color = LABEL_COLORS[value] || "#6b7280";
+  return {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 6,
+    backgroundColor: color + "1a",
+    color: color,
+    padding: "2px 10px",
+    borderRadius: 999,
+    fontSize: 12,
+    fontWeight: 600,
+  };
+};
+
+export const card = {
+  backgroundColor: "#F9FAFB",
+  boxShadow: "0 0 0 2px rgba(203, 213, 225, 0.2)",
+  padding: "1rem ",
+  borderRadius: "10px",
+};

@@ -6,7 +6,7 @@ import PriorityFollowUpComponent from "../components/followup_priority/PriorityF
 
 function PriorityFollowUpPage() {
   const [sidebar, setSidebar] = useState(false);
-  const title = "Prioritas Follow-up";
+  const title = "Prioritas Follow-Up";
   const subTitle = "Customer yang memerlukan tindak lanjut segera";
 
   return (

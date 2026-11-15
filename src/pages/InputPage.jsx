@@ -7,7 +7,7 @@ import { useState } from "react";
 function InputPage() {
   const [sidebar, setSidebar] = useState(false);
   const title = "Input Data Customer";
-  const subTitle = "Tambah data cstomer, kehadiran, paket dan reschadule";
+  const subTitle = "Tambah data customer, kehadiran, paket dan reschedule";
   return (
     <div className="page-layout">
       <aside className={`sidebar ${sidebar ? "open" : ""}`}>

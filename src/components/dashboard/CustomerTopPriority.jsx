@@ -1,21 +1,6 @@
 import DataTable from "../common/DataTable/DataTable";
-import { LABEL_COLORS } from "../../styles/color";
+import { LABEL_COLORS, labelStyle } from "../../styles/color";
 import { useNavigate } from "react-router-dom";
-
-const labelStyle = (value) => {
-  const color = LABEL_COLORS[value] || "#6b7280";
-  return {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6,
-    backgroundColor: color + "1a",
-    color: color,
-    padding: "2px 10px",
-    borderRadius: 999,
-    fontSize: 12,
-    fontWeight: 600,
-  };
-};
 
 function CustomerTopPriority({ top_priority = [], styleCard, LABEL_COLORS }) {
   const navigate = useNavigate();
@@ -33,14 +18,14 @@ function CustomerTopPriority({ top_priority = [], styleCard, LABEL_COLORS }) {
         >
           <div>
             <p>Prioritas Follow-up</p>
-            <p className="sub-gray-font">
+            <p className="gray-font">
               5 customer dengan resiko tertinggi yang perlu segera di hubungi
             </p>
           </div>
           <div style={{ textAlign: "end" }}>
             <button
               onClick={() => navigate("/priority-followup")}
-              className="btn-lihat-semua"
+              className="btn btn-lihat-semua"
             >
               Lihat Semua
             </button>

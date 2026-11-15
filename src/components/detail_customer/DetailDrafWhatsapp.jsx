@@ -72,7 +72,7 @@ export default function DetailDrafWhatsapp({ data }) {
   return (
     <div className="ai-summary-card">
       <p className="judul-ai">
-        <FaGraduationCap /> Draft Follow-up WhatsApp
+        <FaGraduationCap /> Draft Follow-Up WhatsApp
       </p>
       <div
         style={{
