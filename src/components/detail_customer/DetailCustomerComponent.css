@@ -16,7 +16,7 @@
   align-items: center;
 }
 .font-gray {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #9ca3af;
 }
 
@@ -28,6 +28,7 @@
 }
 .font-red {
   color: red;
+  font-size: 1rem;
 }
 
 /* THREE CARD */
@@ -244,9 +245,6 @@ td {
     font-size: inherit;
   }
 
-  .font-gray {
-    font-size: 0.6rem;
-  }
   .font-gray {
     font-size: 0.6rem;
   }

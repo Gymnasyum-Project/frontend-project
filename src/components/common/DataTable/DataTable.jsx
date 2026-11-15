@@ -51,7 +51,7 @@ export default function DataTable({
               </div>
               <div>
                 <p>{e.full_name}</p>
-                <p className="sub-gray-font">{e.phone}</p>
+                <p className="font-gray">{e.phone}</p>
               </div>
             </td>
             <td className="hide-mobile hide-tablet">{e.segment}</td>

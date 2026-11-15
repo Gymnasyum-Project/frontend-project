@@ -3,7 +3,7 @@ export default function DetailRingkasanAi({ data }) {
   return (
     <div className="ai-summary-card">
       <p className="judul-ai">
-        <FaGraduationCap /> Ringkasan Ai
+        <FaGraduationCap /> Ringkasan AI
       </p>
       <p>{data}</p>
     </div>

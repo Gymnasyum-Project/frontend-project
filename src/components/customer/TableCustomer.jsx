@@ -1,30 +1,8 @@
-import { LABEL_COLORS } from "../../styles/color";
+import { LABEL_COLORS, labelStyle, card } from "../../styles/color";
 import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 import { IoSearch } from "react-icons/io5";
 import DataTable from "../common/DataTable/DataTable";
 import { useNavigate } from "react-router-dom";
-
-const card = {
-  backgroundColor: "#F9FAFB",
-  boxShadow: "0 0 0 2px rgba(203, 213, 225, 0.2)",
-  padding: "0 1rem 1rem 1rem ",
-  borderRadius: "10px",
-};
-
-const labelStyle = (value) => {
-  const color = LABEL_COLORS[value] || "#6b7280";
-  return {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6,
-    backgroundColor: color + "1a",
-    color: color,
-    padding: "2px 10px",
-    borderRadius: 999,
-    fontSize: 12,
-    fontWeight: 600,
-  };
-};
 
 function TableCustomer({
   filterData = [],

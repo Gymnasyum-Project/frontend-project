@@ -34,28 +34,28 @@ function CardFirst({ totalCustomers, riskPredictions = [], styleCard }) {
             <IoPeople style={{ color: COLORS.green[200] }} />
           </div>
           <p style={{ fontSize: "25px" }}>{totalCustomers}</p>
-          <p style={{ fontSize: "12px", color: "#9CA3Af" }}>Total Customer</p>
+          <p className="gray-font">Total Customer</p>
         </div>
         <div style={styleCard}>
           <div style={{ ...icons, backgroundColor: "#ccfbf1" }}>
             <IoCheckmarkCircle style={{ color: COLORS.green[300] }} />
           </div>
           <p style={{ fontSize: "25px" }}>{countOf("Active")}</p>
-          <p style={{ fontSize: "12px", color: "#9CA3Af" }}>Active</p>
+          <p className="gray-font">Active</p>
         </div>
         <div style={styleCard}>
           <div style={{ ...icons, backgroundColor: "#faf5c8" }}>
             <IoWarning style={{ color: COLORS.yellow[100] }} />
           </div>
           <p style={{ fontSize: "25px" }}>{countOf("Need Attention")}</p>
-          <p style={{ fontSize: "12px", color: "#9CA3Af" }}>Need Attention</p>
+          <p className="gray-font">Need Attention</p>
         </div>
         <div style={styleCard}>
           <div style={{ ...icons, backgroundColor: "#ffc4c4" }}>
             <IoAlert style={{ color: COLORS.red[100] }} />
           </div>
           <p style={{ fontSize: "25px" }}>{countOf("At Risk")}</p>
-          <p style={{ fontSize: "12px", color: "#9CA3Af" }}>At Risk</p>
+          <p className="gray-font">At Risk</p>
         </div>
       </div>
     </>

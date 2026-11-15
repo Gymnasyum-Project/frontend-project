@@ -19,21 +19,18 @@
 }
 
 table {
-  font-size: 0.8rem;
   width: 100%;
   text-align: center;
 }
 
-th {
+table thead tr th {
+  font-size: 0.8rem;
   color: #9ca3af;
   padding: 1rem;
 }
-
-.phonestyle {
-  color: #9ca3af;
-  font-size: 0.5rem;
+table tbody tr td {
+  font-size: 0.8rem;
 }
-
 @media (max-width: 1068px) {
   .hide-tablet {
     display: none;

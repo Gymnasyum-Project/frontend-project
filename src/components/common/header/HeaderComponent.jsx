@@ -3,12 +3,14 @@ import useLogout from "../../../hooks/auth/useLogout";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
 function HeaderComponent({ title, subTitle, userInitials = "AD" }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const navigate = useNavigate();
   const menuRef = useRef(null);
+  const { value: user } = useLocalStorage("user", null);
   const logout = useLogout();
 
   // Tutup dropdown saat klik di luar atau tekan Escape
@@ -37,7 +39,9 @@ function HeaderComponent({ title, subTitle, userInitials = "AD" }) {
       <header className="header">
         <div>
           <p className="header_title">{title}</p>
-          <p className="header_subtitle">{subTitle}</p>
+          <p className="gray-font">
+            {subTitle},{user?.name}
+          </p>
         </div>
 
         <div className="header_menu" ref={menuRef}>

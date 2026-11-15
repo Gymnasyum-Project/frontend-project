@@ -20,7 +20,7 @@ function FieldError({ message }) {
 export default function AddPackage({ onSuccess }) {
   const [form, setForm] = useState(initialForm);
   const [success, setSuccess] = useState(false);
-  const { submit, error, fieldErrors, loading } = useAddPackage();
+  const { submit, error, loading } = useAddPackage();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,7 +67,7 @@ export default function AddPackage({ onSuccess }) {
       <div className="card-body">
         <form onSubmit={handleSubmit}>
           <div className="content-input">
-            <div className="input-item">
+            <div className="input-item padding-0">
               <label htmlFor="name">
                 Nama Paket<span style={{ color: "red" }}>*</span>
               </label>
@@ -79,10 +79,9 @@ export default function AddPackage({ onSuccess }) {
                 value={form.name}
                 onChange={handleChange}
               />
-              {/* <FieldError message={FieldError.name} /> */}
             </div>
 
-            <div className="input-item">
+            <div className="input-item padding-0">
               <label htmlFor="service_type">
                 Tipe Layanan<span style={{ color: "red" }}>*</span>
               </label>
@@ -102,7 +101,7 @@ export default function AddPackage({ onSuccess }) {
               <FieldError message={FieldError.service_type} />
             </div>
 
-            <div className="input-item">
+            <div className="input-item padding-0">
               <label htmlFor="total_sessions">
                 Total Sesi<span style={{ color: "red" }}>*</span>
               </label>
@@ -118,7 +117,7 @@ export default function AddPackage({ onSuccess }) {
               <FieldError message={FieldError.total_sessions} />
             </div>
 
-            <div className="input-item">
+            <div className="input-item padding-0">
               <label htmlFor="duration_days">
                 Durasi (hari)<span style={{ color: "red" }}>*</span>
               </label>
@@ -134,7 +133,7 @@ export default function AddPackage({ onSuccess }) {
               <FieldError message={FieldError.duration_days} />
             </div>
 
-            <div className="input-item">
+            <div className="input-item padding-0">
               <label htmlFor="price">
                 Harga<span style={{ color: "red" }}>*</span>
               </label>

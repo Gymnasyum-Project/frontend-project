@@ -9,7 +9,7 @@ function DashboardPage() {
   const [sidebar, setSidebar] = useState(false);
 
   const title = "Dashboard";
-  const subTitle = "Selamat datang kembali, Admin";
+  const subTitle = "Selamat datang kembali";
 
   return (
     <div className="page-layout">

@@ -1,20 +1,6 @@
 import { FaGraduationCap } from "react-icons/fa6";
-import { LABEL_COLORS } from "../../styles/color";
+import { LABEL_COLORS, labelStyle } from "../../styles/color";
 
-const labelStyle = (value) => {
-  const color = LABEL_COLORS[value] || "#6b7280";
-  return {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6,
-    backgroundColor: color + "1a",
-    color: color,
-    padding: "2px 10px",
-    borderRadius: 999,
-    fontSize: 12,
-    fontWeight: 600,
-  };
-};
 export default function DetailAiSummary({ data }) {
   const dataLabel = data.risk_predictions?.[0]?.label ?? null;
   const label = dataLabel ?? "Belum dianalisi";

@@ -4,38 +4,17 @@ import LoadingComponent from "../common/loading/LoadingComponent";
 import ErrorComponent from "../common/ErrorComponent/ErrorComponent";
 import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
 import { Link } from "react-router-dom";
-import { LABEL_COLORS } from "../../styles/color";
+import { labelStyle, card } from "../../styles/color";
 import DetailFirst from "./DetailFirst";
 import DetailSecond from "./DetailSecond";
 import DetailThree from "./DetailThree";
 
 import "./DetailCustomerComponent.css";
 
-const card = {
-  backgroundColor: "#F9FAFB",
-  boxShadow: "0 0 0 2px rgba(203, 213, 225, 0.2)",
-  padding: "1rem",
-  borderRadius: "10px",
-};
-
 const getInitials = (name) => {
   const words = name.trim().split(/\s+/);
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
   return (words[0][0] + words[1][0]).toUpperCase();
-};
-const labelStyle = (value) => {
-  const color = LABEL_COLORS[value] || "#6b7280";
-  return {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6,
-    backgroundColor: color + "1a",
-    color: color,
-    padding: "2px 10px",
-    borderRadius: 999,
-    fontSize: 12,
-    fontWeight: 600,
-  };
 };
 
 export default function DetailCustomerComponent() {

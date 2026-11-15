@@ -16,7 +16,7 @@ function SidebarComponent() {
   const location = useLocation();
   const currentPath = location.pathname;
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const { value: user, setValue: setUser } = useLocalStorage("user", null);
+  const { value: user } = useLocalStorage("user", null);
 
   const logout = useLogout();
 
@@ -27,11 +27,15 @@ function SidebarComponent() {
           <div className="icon">
             <LuDumbbell size={30} color="#f0fdfa" />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", padding: 0 }}>
-            <p>Gymnasyum</p>
-            <span style={{ color: COLORS.gray[400], fontSize: "12px" }}>
-              Admin Panel
-            </span>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              padding: 0,
+            }}
+          >
+            <strong>Gymnasyum</strong>
+            <span className="gray-font">Admin panel</span>
           </div>
         </div>
         <div className="content">
@@ -103,7 +107,7 @@ function SidebarComponent() {
             </div>
             <div>
               <p>{user?.role}</p>
-              <p style={{ fontSize: "12px" }}>{user?.name}</p>
+              <p style={{ fontSize: "0.7rem" }}>{user?.name}</p>
             </div>
           </div>
         </div>
