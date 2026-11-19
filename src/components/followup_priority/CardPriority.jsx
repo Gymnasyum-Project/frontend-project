@@ -5,22 +5,39 @@ import { COLORS, labelStyle } from "../../styles/color";
 import formatDate from "../common/formatDate";
 import getInitial from "../common/getInitial";
 import useGetDraft from "../../hooks/priorityFollowUp/useGetDraft";
+import { useSendWhatsapp } from "../../hooks/priorityFollowUp/useSendWhatsapp";
 
 export default function CardPriority({ data, onDetail }) {
   const { loading, error, fetchDraft } = useGetDraft();
+  const { send, sending, info, clearInfo } = useSendWhatsapp();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+  const [summaryId, setSummaryId] = useState(null);
   const label = data.label ?? null;
   const labelText = label ?? "Belum dianalisis";
 
   const handleSendFollowUp = async () => {
+    clearInfo();
     const result = await fetchDraft(data.id);
-    setText(result?.followup_draft ?? "");
+    setText(result?.edited_draft || result?.followup_draft || "");
+    setSummaryId(result?.id ?? null);
     setOpen(true);
   };
 
-  const waNumber = (data.phone ?? "").replace(/\D/g, "").replace(/^0/, "62");
-  const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
+  // 2. Fungsi kirim menggunakan hook useSendWhatsapp
+  const handleKirimWa = async () => {
+    await send({
+      customerId: data.id,
+      phone: data.phone,
+      message: text,
+      summaryId,
+    });
+  };
+
+  const handleCloseModal = () => {
+    setOpen(false);
+    clearInfo();
+  };
   return (
     <div className="card card-container">
       <div
@@ -89,38 +106,49 @@ export default function CardPriority({ data, onDetail }) {
         </button>
       </div>
       {open && (
-        <div className="modal-overlay" onClick={() => setOpen(false)}>
+        <div className="modal-overlay" onClick={handleCloseModal}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <h3>Follow-up untuk {data.full_name}</h3>
             {error && <p style={{ color: COLORS.red[100] }}>{error}</p>}
+
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
               rows={8}
               placeholder="Draft belum tersedia, tulis pesan manual"
             />
+
+            {/* 3. Tampilkan feedback status dari hook */}
+            {info && (
+              <p style={{ color: info.type === "ok" ? "green" : "red" }}>
+                {info.text}
+              </p>
+            )}
+
             <div style={{ display: "flex", gap: "1rem" }}>
               <button
                 className="btn"
                 style={{ border: "1px solid #14b8a6" }}
                 type="button"
-                onClick={() => setOpen(false)}
+                onClick={handleCloseModal}
               >
                 Batal
               </button>
-              <a
+
+              {/* 4. Ganti <a> menjadi <button> */}
+              <button
+                type="button"
+                className="btn"
+                onClick={handleKirimWa}
+                disabled={!data.phone || !text.trim() || sending}
                 style={{
                   border: "none",
                   backgroundColor: COLORS.green[350],
                   color: COLORS.gray[50],
                 }}
-                className="btn"
-                href={waLink}
-                target="_blank"
-                rel="noreferrer"
               >
-                Kirim via WhatsApp
-              </a>
+                {sending ? "Mencatat..." : "Kirim via WhatsApp"}
+              </button>
             </div>
           </div>
         </div>

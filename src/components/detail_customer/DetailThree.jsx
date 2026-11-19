@@ -2,11 +2,12 @@ import { useState } from "react";
 import TabKehadiran from "./TabKehadiran";
 import TabPaket from "./TabPaket";
 import TabReschedule from "./TabReschedule";
+import TabReminder from "./TabReminder";
 import DetailAiSummary from "./DetailAiSummary";
 import DetailRingkasanAi from "./DetailRingkasanAi";
 import DetailDrafWhatsapp from "./DetailDrafWhatsapp";
 
-const TABS = ["Kehadiran", "Paket", "Reschedule"];
+const TABS = ["Kehadiran", "Paket", "Reschedule", "Reminder"];
 const SESSION_STATUS = {
   attended: { label: "Hadir", color: "#16a34a", bg: "#dcfce7" },
   missed: { label: "Tidak Hadir", color: "#dc2626", bg: "#fee2e2" },
@@ -70,6 +71,7 @@ export default function DetailThree({ data, card }) {
           {activeTab === "Reschedule" && (
             <TabReschedule data={data.reschedules} />
           )}
+          {activeTab === "Reminder" && <TabReminder data={data.reminders} />}
         </div>
       </div>
       <div className="col-ai">

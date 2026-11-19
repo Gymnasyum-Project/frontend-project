@@ -2,19 +2,19 @@ export default function DetailSecond({ card, data }) {
   return (
     <div className="history-customer-container">
       <div style={{ ...card }}>
-        <p className="font-gray">Keharidan (30 hr)</p>
-        <p className="font-red">{data.stats.attendance_30d}</p>
+        <p className="font-gray">Kehadiran (7 hr)</p>
+        <p className="font-red">{data.stats.attendance_7d}</p>
         <p className="font-gray">Kunjungan</p>
       </div>
       <div style={{ ...card }}>
         <p className="font-gray">Sesi Terlewat</p>
-        <p className="font-red">{data.stats.missed_30d}</p>
-        <p className="font-gray">Dari {data.stats.total_sessions_30d} Sesi</p>
+        <p className="font-red">{data.stats.missed_7d}</p>
+        <p className="font-gray">Dari {data.stats.total_sessions_7d} Sesi</p>
       </div>
       <div style={{ ...card }}>
         <p className="font-gray">Reschedule</p>
-        <p className="font-red">{data.stats.reschedule_30d}</p>
-        <p className="font-gray">Kali bulan ini</p>
+        <p className="font-red">{data.stats.reschedule_7d}</p>
+        <p className="font-gray">Kali Minggu ini</p>
       </div>
       <div style={{ ...card }}>
         <p className="font-gray">Sisa Paket</p>
@@ -29,9 +29,9 @@ export default function DetailSecond({ card, data }) {
       <div style={{ ...card }}>
         <p className="font-gray">Reminder Respons</p>
         <p className="font-red">
-          {data.stats.reminder_responded_30d}/{data.stats.reminder_total_30d}
+          {data.stats.reminder_responded_7d}/{data.stats.reminder_total_7d}
         </p>
-        <p className="font-gray"> Direspon</p>
+        <p className="font-gray"> Direspons</p>
       </div>
     </div>
   );
