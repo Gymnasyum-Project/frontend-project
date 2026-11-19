@@ -8,7 +8,6 @@ const STATUS_OPTIONS = [
   { value: "attended", label: "Hadir" },
   { value: "missed", label: "Tidak Hadir" },
   { value: "rescheduled", label: "Dijadwal Ulang" },
-  { value: "cancelled", label: "Dibatalkan" },
 ];
 
 const initialForm = {

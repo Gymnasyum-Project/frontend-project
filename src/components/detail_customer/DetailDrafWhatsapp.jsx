@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaGraduationCap } from "react-icons/fa6";
 import { generateSummary, updateSummary } from "../../services/customerService";
+import { useSendWhatsapp } from "../../hooks/priorityFollowUp/useSendWhatsapp";
 
 const draftOf = (s) => s?.edited_draft || s?.followup_draft || "";
 
@@ -10,11 +11,13 @@ export default function DetailDrafWhatsapp({ data }) {
   const [generating, setGenerating] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState(null);
+  const { send, sending, info, clearInfo } = useSendWhatsapp();
 
   useEffect(() => {
     setSummary(data.ai_summary);
     setPesan(draftOf(data.ai_summary));
     setError(null);
+    clearInfo();
   }, [data.id]);
 
   const generateUlang = async () => {
@@ -50,24 +53,13 @@ export default function DetailDrafWhatsapp({ data }) {
     }
   };
 
-  const kirim = () => {
-    let nomor = (data.phone ?? "").replace(/\D/g, "");
-    if (!nomor || !pesan.trim()) return;
-
-    if (nomor.startsWith("0")) {
-      nomor = "62" + nomor.slice(1);
-    }
-    window.open(
-      `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`,
-      "_blank",
-    );
-    if (summary?.id) {
-      updateSummary(summary.id, { edited_draft: pesan, status: "approved" })
-        .then(setSummary)
-        .catch(() =>
-          setError("Pesan terbuka, tapi gagal menyimpan perubahan draft"),
-        );
-    }
+  const kirim = async () => {
+    send({
+      customerId: data.id,
+      phone: data.phone,
+      message: pesan,
+      summaryId: summary?.id,
+    });
   };
   return (
     <div className="ai-summary-card">
@@ -121,12 +113,19 @@ export default function DetailDrafWhatsapp({ data }) {
       </div>
       {error && <p className="error-text">{error}</p>}
       <button
+        type="button"
         className="btn-kirim-pesan"
         onClick={kirim}
-        disabled={!data.phone}
+        disabled={!data.phone || !pesan.trim() || sending}
       >
-        Follow up via whatsapp
+        {sending ? "Mencatat..." : "Kirim ke WhatsApp"}
       </button>
+
+      {info && (
+        <p style={{ color: info.type === "ok" ? "green" : "red" }}>
+          {info.text}
+        </p>
+      )}
     </div>
   );
 }

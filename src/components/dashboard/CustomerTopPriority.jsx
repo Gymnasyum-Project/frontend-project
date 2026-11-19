@@ -1,5 +1,5 @@
 import DataTable from "../common/DataTable/DataTable";
-import { LABEL_COLORS, labelStyle } from "../../styles/color";
+import { labelStyle } from "../../styles/color";
 import { useNavigate } from "react-router-dom";
 
 function CustomerTopPriority({ top_priority = [], styleCard, LABEL_COLORS }) {

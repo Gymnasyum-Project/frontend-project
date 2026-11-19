@@ -21,7 +21,9 @@ export const addAttendance = async ({
 
 export const getCustomerSessions = (customerId) =>
   api
-    .get(`/attendance`, { params: { customer_id: customerId } })
+    .get(`/attendance/pending-reschedule`, {
+      params: { customer_id: customerId },
+    })
     .then((r) => r.data.data);
 
 export const rescheduleSession = (attendanceId, payload) =>

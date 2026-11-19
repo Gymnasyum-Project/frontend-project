@@ -40,7 +40,8 @@ function HeaderComponent({ title, subTitle, userInitials = "AD" }) {
         <div>
           <p className="header_title">{title}</p>
           <p className="gray-font">
-            {subTitle},{user?.name}
+            {subTitle}
+            {/* • {user?.name} */}
           </p>
         </div>
 

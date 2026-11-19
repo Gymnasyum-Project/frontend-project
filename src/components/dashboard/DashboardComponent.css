@@ -1,20 +1,22 @@
 .chart-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-    gap: 16px;
-    padding: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 16px;
+  padding: 1rem;
 }
 
-.chart-grid>* {
-    min-width: 0;
+.chart-grid > * {
+  min-width: 0;
 }
-.btn-lihat-semua{
-    padding: 0.3rem;
-    cursor: pointer;
-    background: none;border-radius: 5px;border: 1px solid #9CA3AF;
+.btn-lihat-semua {
+  padding: 0.3rem;
+  cursor: pointer;
+  background: none;
+  border-radius: 5px;
+  border: 1px solid #9ca3af;
 }
 @media (max-width: 478px) {
-    .chart-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
+  .chart-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

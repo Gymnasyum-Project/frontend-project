@@ -4,6 +4,9 @@ import { useCustomerSearch } from "../../hooks/customer/useCustomerSearch";
 import { useRescheduleSession } from "../../hooks/reschedule/useRescheduleSession";
 import { useGetCustomerSessions } from "../../hooks/reschedule/useGetCustomerSessions";
 
+const formatTanggal = (iso) =>
+  new Date(iso).toLocaleDateString("id-ID", { dateStyle: "medium" });
+
 export default function TabTambahReschedule() {
   const { options: customerOptions, setSearchText } = useCustomerSearch();
   const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -12,9 +15,12 @@ export default function TabTambahReschedule() {
   const [sessionId, setSessionId] = useState("");
   const [tanggal, setTanggal] = useState("");
   const [jam, setJam] = useState("");
+  const [coach, setCoach] = useState("");
   const [alasan, setAlasan] = useState("");
   const [success, setSuccess] = useState(false);
 
+  // Sekarang berisi sesi yang berstatus "dijadwal ulang" dan belum dihadiri
+  // (service getCustomerSessions diarahkan ke GET /attendance/pending-reschedule).
   const { sessions, loading, error } = useGetCustomerSessions(customerId);
   const {
     submit,
@@ -23,8 +29,10 @@ export default function TabTambahReschedule() {
     fieldErrors,
   } = useRescheduleSession();
 
-  const sesiAktif = sessions.filter((s) => s.status !== "cancelled");
+  // tanggal kedatangan tidak boleh di masa depan
+  const hariIni = new Date().toLocaleDateString("sv-SE"); // YYYY-MM-DD, jam lokal
 
+  // ganti customer -> kosongkan sesi terpilih
   useEffect(() => {
     setSessionId("");
   }, [customerId]);
@@ -36,6 +44,7 @@ export default function TabTambahReschedule() {
     setSessionId("");
     setTanggal("");
     setJam("");
+    setCoach("");
     setAlasan("");
     setSuccess(false);
   };
@@ -44,22 +53,20 @@ export default function TabTambahReschedule() {
     e.preventDefault();
     setSuccess(false);
     const ok = await submit(sessionId, {
-      new_schedule: new Date(`${tanggal}T${jam}`).toISOString(),
+      visited_at: new Date(`${tanggal}T${jam}`).toISOString(),
+      coach_name: coach || undefined,
       reason: alasan || undefined,
     });
     if (ok) {
-      handleReset(e);
+      handleReset();
       setSuccess(true);
     }
   };
 
   const labelSesi = (s) =>
-    `${s.customer_packages?.packages?.name ?? "Paket"} · ${new Date(
+    `${s.customer_packages?.packages?.name ?? "Paket"} · semula ${formatTanggal(
       s.scheduled_at,
-    ).toLocaleString("id-ID", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    })} · ${s.status}`;
+    )}`;
 
   return (
     <div>
@@ -109,7 +116,8 @@ export default function TabTambahReschedule() {
 
             <div className="input-item">
               <label htmlFor="session">
-                Pilih Sesi<span style={{ color: "red" }}>*</span>
+                Sesi yang Dijadwal Ulang
+                <span style={{ color: "red" }}>*</span>
               </label>
               <select
                 id="session"
@@ -120,7 +128,7 @@ export default function TabTambahReschedule() {
                 <option value="">
                   {loading ? "Memuat sesi..." : "-- Pilih Sesi --"}
                 </option>
-                {sesiAktif.map((s) => (
+                {sessions.map((s) => (
                   <option key={s.id} value={s.id}>
                     {labelSesi(s)}
                   </option>
@@ -131,42 +139,57 @@ export default function TabTambahReschedule() {
                   Gagal memuat sesi: {error.message}
                 </p>
               )}
-              {customerId && !loading && !error && sesiAktif.length === 0 && (
-                <p>Customer ini belum punya sesi.</p>
+              {customerId && !loading && !error && sessions.length === 0 && (
+                <p>
+                  Customer ini tidak punya sesi dijadwal ulang yang menunggu.
+                </p>
               )}
             </div>
+
             <div className="input-item">
-              <label htmlFor="alasan">
-                Alasan<span style={{ color: "red" }}>*</span>
-              </label>
+              <label htmlFor="coach">Nama Coach</label>
+              <input
+                id="coach"
+                type="text"
+                value={coach}
+                onChange={(e) => setCoach(e.target.value)}
+                placeholder="Kosongkan untuk memakai coach sesi semula"
+              />
+            </div>
+
+            <div className="input-item">
+              <label htmlFor="alasan">Alasan Reschedule</label>
               <select
                 id="alasan"
                 value={alasan}
                 onChange={(e) => setAlasan(e.target.value)}
               >
-                <option value="">-- Pilih --</option>
+                <option value="">-- Pilih (opsional) --</option>
                 <option value="Sakit">Sakit</option>
                 <option value="Ada keperluan">Ada keperluan</option>
                 <option value="Lainnya">Lainnya</option>
               </select>
             </div>
           </div>
+
           <div>
             <div className="input-item">
               <label htmlFor="tanggal">
-                Tanggal Baru<span style={{ color: "red" }}>*</span>
+                Tanggal Kedatangan<span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="date"
                 id="tanggal"
                 value={tanggal}
+                max={hariIni}
                 onChange={(e) => setTanggal(e.target.value)}
                 required
               />
             </div>
+
             <div className="input-item">
               <label htmlFor="jam">
-                Waktu Baru<span style={{ color: "red" }}>*</span>
+                Waktu Kedatangan<span style={{ color: "red" }}>*</span>
               </label>
               <input
                 type="time"
@@ -175,28 +198,30 @@ export default function TabTambahReschedule() {
                 onChange={(e) => setJam(e.target.value)}
                 required
               />
-              {fieldErrors.new_schedule && (
-                <p style={{ color: "red" }}>{fieldErrors.new_schedule}</p>
+              {fieldErrors.visited_at && (
+                <p style={{ color: "red" }}>{fieldErrors.visited_at}</p>
               )}
             </div>
+
             {saveError && <p style={{ color: "red" }}>{saveError}</p>}
             {success && (
-              <p style={{ color: "green" }}>Reschedule berhasil disimpan.</p>
+              <p style={{ color: "green" }}>Kehadiran berhasil dicatat.</p>
             )}
           </div>
+
           <div className="btn-input-container">
             <button
               type="submit"
               className="btn-input active-btn"
               disabled={!bisaKirim}
             >
-              {saving ? "Menyimpan..." : "Simpan Reschedule"}
+              {saving ? "Menyimpan..." : "Simpan Kehadiran"}
             </button>{" "}
             <button
               type="button"
               className="btn-input"
               onClick={handleReset}
-              disabled={loading || saving}
+              disabled={saving}
             >
               Reset
             </button>
