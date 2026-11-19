@@ -3,7 +3,6 @@ import { useDetailCustomer } from "../../hooks/customer/useDetailCustomer";
 import LoadingComponent from "../common/loading/LoadingComponent";
 import ErrorComponent from "../common/ErrorComponent/ErrorComponent";
 import EmptyComponent from "../common/ErrorComponent/EmptyComponent";
-import { Link } from "react-router-dom";
 import { labelStyle, card } from "../../styles/color";
 import DetailFirst from "./DetailFirst";
 import DetailSecond from "./DetailSecond";
@@ -28,9 +27,19 @@ export default function DetailCustomerComponent() {
   return (
     <div className="container-detail">
       <div className="back-link">
-        <Link className="font-gray" onClick={() => navigate(-1)}>
+        <button
+          type="button"
+          className="font-gray"
+          onClick={() => navigate(-1)}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+          }}
+        >
           ← Kembali ke Daftar Customer
-        </Link>
+        </button>
       </div>
       <DetailFirst
         data={data}

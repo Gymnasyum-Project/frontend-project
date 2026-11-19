@@ -18,9 +18,11 @@ function useDebounce(value, delay = 400) {
 
 const formatText = (text) =>
   text
-    .split("_")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
+    ? text
+        .split("_")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ")
+    : "-";
 
 function CustomerComponent() {
   const [search, setSearch] = useState("");
@@ -28,37 +30,47 @@ function CustomerComponent() {
   const [sortBy, setSortBy] = useState("risk");
   const [activeLabel, setActiveLabel] = useState("Semua");
   const debouncedSearch = useDebounce(search);
-  const { data, loading, error, refetch } = useCustomerHooks(
+
+  const { data, loading, loadingMore, error, refetch } = useCustomerHooks(
     page,
-    10,
+    20,
     debouncedSearch,
+    activeLabel,
   );
 
-  useEffect(() => {
+  // Reset kembali ke halaman 1 setiap kali tab atau pencarian berubah
+  const handleSelectTab = (label) => {
     setPage(1);
-  }, [debouncedSearch, activeLabel, sortBy]);
+    setActiveLabel(label);
+  };
 
-  if (loading && !data) return <LoadingComponent />;
+  const handleSearchChange = (val) => {
+    setPage(1);
+    setSearch(val);
+  };
+
+  if (loading && page === 1 && !data?.meta) return <LoadingComponent />;
   if (error) return <ErrorComponent message={error} onRetry={refetch} />;
-  if (!data) return <EmptyComponent />;
 
   const { data: customers = [], meta } = data ?? {};
 
-  const counts = customers.reduce((acc, c) => {
-    acc[c.risk_label] = (acc[c.risk_label] ?? 0) + 1;
-    return acc;
-  }, {});
+  // Ambil total asli per kategori dari meta.counts backend
+  const tabCounts = meta?.counts ?? {
+    all: customers.length,
+    at_risk: 0,
+    need_attention: 0,
+    active: 0,
+  };
+
   const tabs = [
-    { label: "Semua", total: customers.length },
-    ...Object.entries(counts).map(([label, total]) => ({ label, total })),
+    { label: "Semua", total: tabCounts.all },
+    { label: "At Risk", total: tabCounts.at_risk },
+    { label: "Need Attention", total: tabCounts.need_attention },
+    { label: "Active", total: tabCounts.active },
   ];
 
-  const filtered =
-    activeLabel === "Semua"
-      ? customers
-      : customers.filter((e) => e.risk_label === activeLabel);
-
-  const sortedData = [...filtered].sort((a, b) => {
+  // Sorting lokal tambahan (jika user ganti dropdown urutkan Kehadiran / Sisa Paket)
+  const sortedData = [...customers].sort((a, b) => {
     switch (sortBy) {
       case "attendance":
         return Number(b.attendance_30d ?? 0) - Number(a.attendance_30d ?? 0);
@@ -73,6 +85,8 @@ function CustomerComponent() {
     }
   });
 
+  const hasMore = meta ? customers.length < meta.total : false;
+
   return (
     <div>
       <div>
@@ -81,11 +95,11 @@ function CustomerComponent() {
           setSortBy={setSortBy}
           labels={tabs}
           activeLabel={activeLabel}
-          setActiveLabel={setActiveLabel}
+          setActiveLabel={handleSelectTab}
         />
         <TableCustomer
           search={search}
-          setSearch={setSearch}
+          setSearch={handleSearchChange}
           customers={customers}
           meta={meta}
           page={page}
@@ -94,6 +108,10 @@ function CustomerComponent() {
           EmptyComponent={EmptyComponent}
           formatText={formatText}
           activeLabel={activeLabel}
+          loading={loading}
+          loadingMore={loadingMore}
+          hasMore={hasMore}
+          onLoadMore={() => setPage((prev) => prev + 1)}
         />
       </div>
     </div>

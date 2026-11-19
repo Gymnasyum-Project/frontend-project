@@ -29,9 +29,17 @@ export const getCustomer = async ({
   page = 1,
   limit = 20,
   search = "",
+  risk,
+  sort = "priority",
 } = {}) => {
   const response = await api.get("/customers", {
-    params: { page, limit, sort: "priority", search: search || undefined },
+    params: {
+      page,
+      limit,
+      sort,
+      search: search || undefined,
+      risk: risk || undefined,
+    },
   });
   return {
     data: response.data.data,
@@ -41,7 +49,6 @@ export const getCustomer = async ({
 
 export const getCustomerById = async (id) => {
   const res = await api.get(`/customers/${id}`);
-  console.log(res.data.data);
   return res.data.data;
 };
 
