@@ -9,6 +9,11 @@ export default function DataTable({
   LABEL_COLORS,
   onDetail,
 }) {
+  const SHORT_LABEL = {
+    "Need Attention": "Need Attention",
+    "At Risk": "At Risk",
+    Active: "Active",
+  };
   return (
     <table style={{ borderCollapse: "collapse" }}>
       <thead>
@@ -65,7 +70,11 @@ export default function DataTable({
                     backgroundColor: LABEL_COLORS[e.risk_label] || "#6b7280",
                   }}
                 />
-                <span className="label-atrisk">{e.risk_label}</span>
+
+                <span className="label-atrisk">
+                  {SHORT_LABEL[e.risk_label] ?? e.risk_label ?? "-"}
+                </span>
+                {/* <span className="label-atrisk">{e.risk_label}</span> */}
               </div>
             </td>
             <td className="cellBody">

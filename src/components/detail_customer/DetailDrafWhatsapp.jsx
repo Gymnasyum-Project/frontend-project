@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaGraduationCap } from "react-icons/fa6";
-import { generateSummary, updateSummary } from "../../services/customerService";
+import { generateSummary } from "../../services/customerService";
 import { useSendWhatsapp } from "../../hooks/priorityFollowUp/useSendWhatsapp";
 
 const draftOf = (s) => s?.edited_draft || s?.followup_draft || "";

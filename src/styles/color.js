@@ -48,7 +48,7 @@ export const labelStyle = (value) => {
     padding: "2px 10px",
     borderRadius: 999,
     fontSize: 12,
-    fontWeight: 600,
+    fontWeight: 500,
   };
 };
 

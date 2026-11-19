@@ -30,9 +30,10 @@ export default function TabTambahPaket() {
 
   const handleReset = () => {
     setForm(initialForm);
+    setCustomer(null);
+    setSearchText("");
     setSuccess(false);
   };
-
   async function handleSubmit(e) {
     e.preventDefault();
     setSuccess(false);
@@ -84,6 +85,7 @@ export default function TabTambahPaket() {
                 value={customer}
                 onChange={(opt) => {
                   setCustomer(opt);
+                  setForm(initialForm);
                   setSuccess(false);
                 }}
                 onInputChange={(text, meta) => {
