@@ -9,6 +9,7 @@ const cleanWhatsappDraft = (rawText) => {
   return rawText
     .replace(/^.*WhatsApp Follow-Up Draft.*\n*/i, "")
     .replace(/\*\*(Greeting|Isi Pesan|Closing)\s*:?\*\*\s*\n*/gi, "")
+    .replace(/\*\*(.+?)\*\*/g, "*$1*")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 };
