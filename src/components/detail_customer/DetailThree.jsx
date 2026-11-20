@@ -31,7 +31,7 @@ const formatDateTime = (iso) =>
       })
     : "-";
 
-export default function DetailThree({ data, card }) {
+export default function DetailThree({ data, card, onRefresh }) {
   const [activeTab, setActiveTab] = useState("Kehadiran");
   const [aiSummary, setAiSummary] = useState(data.ai_summary ?? null);
 
@@ -62,7 +62,7 @@ export default function DetailThree({ data, card }) {
             </div>
           ))}
         </div>
-        <div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           {activeTab === "Kehadiran" && (
             <TabKehadiran
               SESSION_STATUS={SESSION_STATUS}
@@ -76,14 +76,23 @@ export default function DetailThree({ data, card }) {
           {activeTab === "Reschedule" && (
             <TabReschedule data={data.reschedules} />
           )}
-          {activeTab === "Reminder" && <TabReminder data={data.reminders} />}
+          {activeTab === "Reminder" && (
+            <TabReminder data={data.reminders} onSuccessUpdate={onRefresh} />
+          )}
         </div>
       </div>
       <div className="col-ai">
         <div style={{ ...card, height: "fit-content" }}>
           <DetailAiSummary data={{ ...data, ai_summary: aiSummary }} />
         </div>
-        <div style={{ ...card, height: "fit-content" }}>
+        <div
+          style={{
+            ...card,
+            maxHeight: "20rem",
+            overflowY: "auto",
+            paddingRight: "0.75rem",
+          }}
+        >
           <DetailRingkasanAi data={summary} />
         </div>
         <div style={{ ...card, height: "fit-content" }}>
@@ -91,6 +100,7 @@ export default function DetailThree({ data, card }) {
             key={data.id}
             data={{ ...data, ai_summary: aiSummary }}
             onSummaryUpdated={setAiSummary}
+            onSuccessSend={onRefresh}
           />
         </div>
       </div>

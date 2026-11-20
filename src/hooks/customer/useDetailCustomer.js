@@ -6,24 +6,34 @@ export function useDetailCustomer(id) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = useCallback(() => {
-    return getCustomerById(id)
-      .then((res) => {
-        setData(res);
-        setError(null);
-      })
-      .catch((err) => setError(err.res?.data?.message || err.message))
-      .finally(() => setLoading(false));
-  }, [id]);
+  const fetchData = useCallback(
+    (isBackground = false) => {
+      if (!isBackground) {
+        setLoading(true);
+      }
+      return getCustomerById(id)
+        .then((res) => {
+          setData(res);
+          setError(null);
+        })
+        .catch((err) => setError(err.res?.data?.message || err.message))
+        .finally(() => {
+          if (!isBackground) {
+            setLoading(false);
+          }
+        });
+    },
+    [id],
+  );
 
   useEffect(() => {
-    fetchData();
+    fetchData(false);
   }, [fetchData]);
 
+  // Refetch berjalan di latar belakang tanpa memicu layar loading penuh
   const refetch = useCallback(() => {
-    setLoading(true);
-    setError(null);
-    fetchData();
+    return fetchData(true);
   }, [fetchData]);
+
   return { data, loading, error, refetch };
 }
