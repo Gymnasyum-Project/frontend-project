@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useDeferredValue } from "react";
 import TabKehadiran from "./TabKehadiran";
 import TabPaket from "./TabPaket";
 import TabReschedule from "./TabReschedule";
@@ -33,8 +33,13 @@ const formatDateTime = (iso) =>
 
 export default function DetailThree({ data, card }) {
   const [activeTab, setActiveTab] = useState("Kehadiran");
-  const dataSummary = data.ai_summary?.summary ?? null;
-  const summary = dataSummary ?? "Belum dianalisis";
+  const [aiSummary, setAiSummary] = useState(data.ai_summary ?? null);
+
+  useEffect(() => {
+    setAiSummary(data.ai_summary ?? null);
+  }, [data.id, data.ai_summary]);
+
+  const summary = aiSummary?.summary ?? "Belum dianalisis";
 
   const packageById = Object.fromEntries(
     data.customer_packages.map((p) => [p.id, p]),
@@ -76,13 +81,17 @@ export default function DetailThree({ data, card }) {
       </div>
       <div className="col-ai">
         <div style={{ ...card, height: "fit-content" }}>
-          <DetailAiSummary data={data} />
+          <DetailAiSummary data={{ ...data, ai_summary: aiSummary }} />
         </div>
         <div style={{ ...card, height: "fit-content" }}>
           <DetailRingkasanAi data={summary} />
         </div>
         <div style={{ ...card, height: "fit-content" }}>
-          <DetailDrafWhatsapp key={data.id} data={data} />
+          <DetailDrafWhatsapp
+            key={data.id}
+            data={{ ...data, ai_summary: aiSummary }}
+            onSummaryUpdated={setAiSummary}
+          />
         </div>
       </div>
     </div>

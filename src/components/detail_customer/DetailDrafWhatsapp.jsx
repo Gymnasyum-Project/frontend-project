@@ -3,9 +3,20 @@ import { FaGraduationCap } from "react-icons/fa6";
 import { generateSummary } from "../../services/customerService";
 import { useSendWhatsapp } from "../../hooks/priorityFollowUp/useSendWhatsapp";
 
-const draftOf = (s) => s?.edited_draft || s?.followup_draft || "";
+const cleanWhatsappDraft = (rawText) => {
+  if (!rawText || typeof rawText !== "string") return "";
 
-export default function DetailDrafWhatsapp({ data }) {
+  return rawText
+    .replace(/^.*WhatsApp Follow-Up Draft.*\n*/i, "")
+    .replace(/\*\*(Greeting|Isi Pesan|Closing)\s*:?\*\*\s*\n*/gi, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+};
+
+const draftOf = (s) =>
+  cleanWhatsappDraft(s?.edited_draft || s?.followup_draft || "");
+
+export default function DetailDrafWhatsapp({ data, onSummaryUpdated }) {
   const [summary, setSummary] = useState(data.ai_summary);
   const [pesan, setPesan] = useState(draftOf(data.ai_summary));
   const [generating, setGenerating] = useState(false);
@@ -35,6 +46,7 @@ export default function DetailDrafWhatsapp({ data }) {
 
       setSummary(result);
       setPesan(draftOf(result));
+      onSummaryUpdated?.(result);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -61,6 +73,7 @@ export default function DetailDrafWhatsapp({ data }) {
       summaryId: summary?.id,
     });
   };
+
   return (
     <div className="ai-summary-card">
       <p className="judul-ai">
@@ -77,7 +90,7 @@ export default function DetailDrafWhatsapp({ data }) {
         <textarea
           className="wa-textarea"
           name="pesan"
-          rows="5"
+          rows="8"
           value={pesan}
           onChange={(e) => setPesan(e.target.value)}
         />
