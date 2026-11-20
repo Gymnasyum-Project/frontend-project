@@ -17,7 +17,11 @@ const cleanWhatsappDraft = (rawText) => {
 const draftOf = (s) =>
   cleanWhatsappDraft(s?.edited_draft || s?.followup_draft || "");
 
-export default function DetailDrafWhatsapp({ data, onSummaryUpdated }) {
+export default function DetailDrafWhatsapp({
+  data,
+  onSummaryUpdated,
+  onSuccessSend,
+}) {
   const [summary, setSummary] = useState(data.ai_summary);
   const [pesan, setPesan] = useState(draftOf(data.ai_summary));
   const [generating, setGenerating] = useState(false);
@@ -73,6 +77,9 @@ export default function DetailDrafWhatsapp({ data, onSummaryUpdated }) {
       message: pesan,
       summaryId: summary?.id,
     });
+    if (onSuccessSend) {
+      onSuccessSend();
+    }
   };
 
   return (

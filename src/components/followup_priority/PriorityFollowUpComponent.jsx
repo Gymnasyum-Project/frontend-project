@@ -36,11 +36,8 @@ export default function PriorityFollowUpComponent() {
           <IoIosWarning size={24} />
         </div>
         <div>
-          <p>Perhatian: 5 customer beresiko tinggi</p>
-          <p>
-            Customer ini membutuhkan tidankan lanjut. Segera hubungi mereka
-            untuk mencegah churn
-          </p>
+          <p>5 pelanggan berisiko berhenti berlangganan</p>
+          <p>Segera hubungi mereka untuk mempertahankan retensi.</p>
         </div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>

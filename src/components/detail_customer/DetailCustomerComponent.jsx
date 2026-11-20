@@ -19,7 +19,7 @@ const getInitials = (name) => {
 export default function DetailCustomerComponent() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data, loading, error } = useDetailCustomer(id);
+  const { data, loading, error, refetch } = useDetailCustomer(id);
   if (loading) return <LoadingComponent />;
   if (error) return <ErrorComponent />;
   if (!data) return <EmptyComponent />;
@@ -48,7 +48,7 @@ export default function DetailCustomerComponent() {
         labelStyle={labelStyle}
       />
       <DetailSecond data={data} card={card} />
-      <DetailThree data={data} card={card} />
+      <DetailThree data={data} card={card} onRefresh={refetch} />
     </div>
   );
 }
