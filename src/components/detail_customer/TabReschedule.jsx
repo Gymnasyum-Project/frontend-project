@@ -10,9 +10,9 @@ export default function TabReschedule({ data }) {
         <thead>
           <tr>
             <th>Sesi</th>
-            <th>Tanggal</th>
+            <th>Jadwal Sebelumnya</th>
             <th>Reason</th>
-            <th>Reschedule</th>
+            <th>Jadwal Baru</th>
           </tr>
         </thead>
         <tbody>
