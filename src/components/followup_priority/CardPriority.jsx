@@ -16,10 +16,19 @@ export default function CardPriority({ data, onDetail }) {
   const label = data.label ?? null;
   const labelText = label ?? "Belum dianalisis";
 
+  const cleanDraftText = (raw) => {
+    if (!raw) return "";
+    return raw
+      .replace(/^(?:#+\s*D\.?\s*)?WhatsApp Follow-Up Draft\s*\n*/i, "")
+      .replace(/^\*{0,2}(Greeting|Isi Pesan|Closing)\s*:?\*{0,2}\s*\n*/gim, "")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+  };
   const handleSendFollowUp = async () => {
     clearInfo();
     const result = await fetchDraft(data.id);
-    setText(result?.edited_draft || result?.followup_draft || "");
+    const rawText = result?.edited_draft || result?.followup_draft || "";
+    setText(cleanDraftText(rawText));
     setSummaryId(result?.id ?? null);
     setOpen(true);
   };
@@ -38,6 +47,7 @@ export default function CardPriority({ data, onDetail }) {
     setOpen(false);
     clearInfo();
   };
+
   return (
     <div className="card card-container">
       <div
