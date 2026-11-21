@@ -41,6 +41,7 @@ export const getCustomer = async ({
       risk: risk || undefined,
     },
   });
+
   return {
     data: response.data.data,
     meta: response.data.meta,

@@ -34,7 +34,7 @@ function TableCustomer({
               className="header_search-input"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari nama, no. HP, atau CUST00001..."
+              placeholder="Cari nama, no. HP, ID..."
             />
           </div>
         </div>
