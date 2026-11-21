@@ -22,7 +22,7 @@ export default function DataTable({
           <th className="hide-mobile hide-tablet">Segment</th>
           <th>Status Resiko</th>
           <th>Skor Resiko</th>
-          <th className="hide-mobile">Kehadiran (30)</th>
+          <th className="hide-mobile">Kehadiran (7)</th>
           <th className="hide-mobile hide-tablet">Sisa Paket</th>
           <th className="hide-mobile">Terakhir Hadir</th>
           <th>Aksi</th>
@@ -92,7 +92,7 @@ export default function DataTable({
               </div>
             </td>
             <td className="hide-mobile">
-              <AttendanceBar value={e.attendance_30d} />
+              <AttendanceBar value={e.attendance_7d} />
             </td>
             <td className="hide-mobile hide-tablet">
               {e.remaining_sessions} Sesi
