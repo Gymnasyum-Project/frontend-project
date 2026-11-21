@@ -53,7 +53,7 @@ export default function TabTambahReschedule() {
     e.preventDefault();
     setSuccess(false);
     const ok = await submit(sessionId, {
-      visited_at: new Date(`${tanggal}T${jam}`).toISOString(),
+      new_schedule: new Date(`${tanggal}T${jam}`).toISOString(),
       coach_name: coach || undefined,
       reason: alasan || undefined,
     });
@@ -198,8 +198,8 @@ export default function TabTambahReschedule() {
                 onChange={(e) => setJam(e.target.value)}
                 required
               />
-              {fieldErrors.visited_at && (
-                <p style={{ color: "red" }}>{fieldErrors.visited_at}</p>
+              {fieldErrors.new_schedule && (
+                <p style={{ color: "red" }}>{fieldErrors.new_schedule}</p>
               )}
             </div>
 

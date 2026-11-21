@@ -26,7 +26,8 @@ export const getCustomerSessions = (customerId) =>
     })
     .then((r) => r.data.data);
 
-export const rescheduleSession = (attendanceId, payload) =>
+export const rescheduleSession = (attendanceId, payload) => {
   api
     .post(`/attendance/${attendanceId}/reschedule`, payload)
     .then((r) => r.data.data);
+};
