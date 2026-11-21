@@ -31,11 +31,14 @@ export default function TabTambahKehadiran() {
 
   const { packages } = useCustomerPackages(customer?.value);
   const { submit, error, fieldErrors, loading } = useAddAttendance();
-
   useEffect(() => {
+    const activePackages = packages.filter(
+      (p) => p.status === "active" && p.remaining_sessions > 0,
+    );
     setForm((prev) => ({
       ...prev,
-      customer_package_id: packages.length === 1 ? String(packages[0].id) : "",
+      customer_package_id:
+        activePackages.length === 1 ? String(activePackages[0].id) : "",
     }));
   }, [packages]);
 
@@ -54,18 +57,23 @@ export default function TabTambahKehadiran() {
   async function handleSubmit(e) {
     e.preventDefault();
     setSuccess(false);
+
+    // Gabungkan tanggal & waktu secara aman
+    const sessionDateTime = form.tanggal
+      ? new Date(`${form.tanggal}T${form.waktu || "00:00"}`).toISOString()
+      : undefined;
+
     try {
       const payload = {
         customer_id: customer?.value,
         customer_package_id: Number(form.customer_package_id) || undefined,
-        scheduled_at: form.tanggal
-          ? new Date(form.tanggal).toISOString()
-          : undefined,
+        scheduled_at: sessionDateTime,
         status: form.status,
         ...(form.coach_name && { coach_name: form.coach_name }),
-        checkin_at: new Date(
-          `${form.tanggal}T${form.waktu || "00:00"}`,
-        ).toISOString(),
+        ...(form.status === "attended" &&
+          sessionDateTime && {
+            checkin_at: sessionDateTime,
+          }),
       };
 
       await submit(payload);
@@ -137,15 +145,16 @@ export default function TabTambahKehadiran() {
                 <option value="">
                   {customer ? "Pilih Sesi" : "Pilih customer dulu"}
                 </option>
-                {packages.map((p) => (
-                  <option
-                    key={p.id}
-                    value={p.id}
-                    disabled={p.remaining_sessions <= 0}
-                  >
-                    {p.packages?.name} — sisa {p.remaining_sessions} sesi
-                  </option>
-                ))}
+                {packages.map((p) => {
+                  const isUnavailable =
+                    p.status !== "active" || p.remaining_sessions <= 0;
+                  return (
+                    <option key={p.id} value={p.id} disabled={isUnavailable}>
+                      {p.packages?.name} — sisa {p.remaining_sessions} sesi
+                      {p.status !== "active" ? ` (${p.status})` : ""}
+                    </option>
+                  );
+                })}
               </select>
               <FieldError message={fieldErrors.customer_package_id} />
             </div>

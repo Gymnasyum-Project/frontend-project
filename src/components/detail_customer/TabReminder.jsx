@@ -33,8 +33,6 @@ export default function TabReminder({ data, onSuccessUpdate }) {
             : item,
         ),
       );
-
-      // Opsional: beritahu parent component jika perlu refetch data lain
       if (onSuccessUpdate) {
         onSuccessUpdate();
       }
