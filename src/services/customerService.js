@@ -49,6 +49,7 @@ export const getCustomer = async ({
 
 export const getCustomerById = async (id) => {
   const res = await api.get(`/customers/${id}`);
+  console.log(res.data.data);
   return res.data.data;
 };
 

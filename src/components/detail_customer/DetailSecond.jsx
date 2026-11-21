@@ -2,7 +2,7 @@ export default function DetailSecond({ card, data }) {
   return (
     <div className="history-customer-container">
       <div style={{ ...card }}>
-        <p className="font-gray">Kehadiran (30 hr)</p>
+        <p className="font-gray">Kehadiran (7 hr)</p>
         <p className="font-red">{data.stats.attendance_7d}</p>
         <p className="font-gray">Kunjungan</p>
       </div>
