@@ -1,317 +1,191 @@
-# Gymnasyum — Frontend
+# 🏋️ Gymnasyum Frontend — Admin Retention & AI Follow-Up Dashboard
 
-Dashboard admin untuk **memantau risiko berhenti (churn) pelanggan gym** dan menindaklanjutinya dengan pesan WhatsApp yang dibantu AI.
+Antarmuka web panel admin (**Admin Panel**) untuk **Gymnasyum**, sistem retensi anggota gym dan *private coaching* berbasis **Machine Learning Risk Prediction** dan **AI RAG Follow-Up Generator**. Aplikasi ini memudahkan tim admin memantau tingkat risiko anggota, meninjau ringkasan analisis perilaku dari AI, serta menyunting dan mengirim draf pesan *follow-up* WhatsApp.
 
-> Proyek capstone Dicoding — *Customer Retention Risk System berbasis Generative AI*.
+🔗 **Live Demo:** <https://frontend-project-3jco-pearl.vercel.app>
 
-![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-build-646CFF?logo=vite&logoColor=white)
-![Status](https://img.shields.io/badge/status-in%20development-yellow)
+## 📋 Daftar Isi
 
----
+* [Arsitektur & Alur Aplikasi](#-arsitektur--alur-aplikasi)
 
-## Daftar Isi
+* [Fitur Utama](#-fitur-utama)
 
-- [Latar Belakang](#latar-belakang)
-- [Fitur Utama](#fitur-utama)
-- [Alur Sistem](#alur-sistem)
-- [Tech Stack](#tech-stack)
-- [Prasyarat](#prasyarat)
-- [Instalasi & Menjalankan](#instalasi--menjalankan)
-- [Environment Variables](#environment-variables)
-- [Script yang Tersedia](#script-yang-tersedia)
-- [Struktur Folder](#struktur-folder)
-- [Cara Pakai Aplikasi](#cara-pakai-aplikasi)
-- [Integrasi dengan Backend](#integrasi-dengan-backend)
-- [Konvensi Git & Kontribusi](#konvensi-git--kontribusi)
-- [Troubleshooting](#troubleshooting)
-- [Tim](#tim)
+* [Tech Stack](#-tech-stack)
 
----
+* [Struktur Proyek](#-struktur-proyek)
 
-## Latar Belakang
+* [Alur Penggunaan Admin](#-alur-penggunaan-admin)
 
-Pusat kebugaran sering kehilangan member tanpa sadar: kehadiran menurun, sesi paket tidak terpakai, lalu member berhenti. Gymnasyum membantu admin **menemukan member berisiko lebih awal** dan menghubungi mereka secara personal.
+* [Prasyarat & Instalasi Lokal](#-prasyarat--instalasi-lokal)
 
-Sistem ini terdiri dari tiga bagian:
+* [Konfigurasi Environment Variables](#-konfigurasi-environment-variables)
 
-| Bagian | Peran |
-| --- | --- |
-| **Backend** (Express + Prisma + PostgreSQL) | Menyimpan data, menghitung fitur, mengelola alur |
-| **Model ML** (Flask API) | Mengklasifikasikan risiko: *Active*, *Need Attention*, *At Risk* |
-| **GenAI Service** | Menulis ringkasan kondisi member dan draf pesan WhatsApp |
-| **Frontend (repo ini)** | Antarmuka admin untuk melihat, mencatat, dan menindaklanjuti |
+* [Deployment (Vercel)](#-deployment-vercel)
 
-**Prinsip human-in-the-loop:** AI hanya menyarankan. Admin selalu meninjau, mengedit, lalu mengirim pesan secara manual. Tidak ada pesan yang terkirim otomatis.
+* [Troubleshooting Umum](#-troubleshooting-umum)
 
----
-
-## Fitur Utama
-
-- **Login admin** — akses dilindungi token (JWT).
-- **Dashboard prioritas** — daftar member berurutan dari risiko tertinggi, lengkap dengan skor prioritas.
-- **Daftar & detail customer** — statistik 7 hari terakhir: kehadiran, tidak hadir, reschedule, sisa sesi, kunjungan terakhir, reminder.
-- **Ringkasan & draf WhatsApp dari AI** — bisa digenerate ulang, diedit, disalin, atau dikirim lewat WhatsApp.
-- **Reminder otomatis tercatat** — saat tombol *Kirim ke WhatsApp* ditekan, reminder langsung dicatat ke sistem.
-- **Input data operasional**
-  - Kehadiran (hadir / tidak hadir / dijadwal ulang)
-  - Kedatangan reschedule
-  - Reminder dan respons customer
-- **Manajemen paket** — tambah, ubah, dan atur status paket (aktif / nonaktif), serta pasang paket ke customer.
-- **Log follow-up** — riwayat tindak lanjut ke customer.
-
----
-
-## Alur Sistem
+## 🏗 Arsitektur & Alur Aplikasi
 
 ```
-Admin mencatat aktivitas ──► Backend menghitung fitur (7 hari terakhir)
-                                      │
-                                      ▼
-                          Model ML: Active / Need Attention / At Risk
-                                      │
-                                      ▼
-                          GenAI: ringkasan + draf WhatsApp
-                                      │
-                                      ▼
-         Admin meninjau/mengedit ──► Kirim manual via WhatsApp ──► Reminder tercatat
+┌─────────────────────────────────────────────────────────────┐
+│                  Gymnasyum Frontend (React)                 │
+│  • Dashboard Analitik & Ringkasan Risiko                    │
+│  • Manajemen Anggota & Detail Profil                        │
+│  • Prioritas Follow-Up (At Risk & Need Attention)           │
+│  • Editor Draf WhatsApp & Markdown AI Summary Viewer        │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ REST API (HTTPS + Bearer JWT)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│               Gymnasyum Backend API (Express)               │
+│  • Autentikasi Admin & Data Anggota                         │
+│  • Integrasi ML Risk Scoring & RAG Service                  │
+└─────────────────────────────────────────────────────────────┘
+
 ```
 
----
+## ✨ Fitur Utama
 
-## Tech Stack
+* **Dashboard & Prioritas Follow-Up:** Menampilkan ringkasan status retensi anggota (`At Risk`, `Need Attention`, `Low Risk`) beserta daftar prioritas anggota yang membutuhkan tindakan segera.
 
-- **React** + **Vite**
-- **React Router** — navigasi halaman
-- **Axios** — komunikasi dengan API backend
-- **react-select** — pencarian customer
-- **react-icons** — ikon
+* **Manajemen & Detail Customer:** Pencarian anggota, riwayat sesi latihan, status kehadiran (*Hadir* / *Tidak Hadir*), pelatih (*Coach*), serta sisa sesi dan masa berlaku paket.
 
-> Sesuaikan daftar ini dengan `package.json` jika ada library yang berbeda.
+* **Analisis & Ringkasan AI (RAG):**
 
----
+  * Menampilkan hasil analisis terstruktur dari layanan AI (Informasi Customer, Tabel Indikator Risiko, Rekomendasi Pendekatan berbasis SOP, serta Alternatif Pesan) dengan dukungan *horizontal scroll* pada tabel responsif.
 
-## Prasyarat
+  * Mendukung pembuatan draf baru maupun pembaruan ulang (**Generate Ulang**).
 
-Pastikan sudah terpasang:
+* **Editor Draf WhatsApp Interaktif:** Admin dapat menyunting teks `followup_draft` secara langsung, menyimpan perubahan (`edited_draft`), menyetujui draf (`approved`), dan menyalin/mengirim pesan ke WhatsApp anggota.
 
-- [Node.js](https://nodejs.org/) **v20 atau lebih baru**
-- npm (ikut terpasang bersama Node.js)
-- Backend Gymnasyum sudah berjalan (lihat repo backend)
+* **Input Data & Pengaturan:** Antarmuka pencatatan data operasional dan konfigurasi akun admin.
 
-Cek versi:
+## 🛠 Tech Stack
 
-```bash
-node -v
-npm -v
+* **Core Framework:** React (JavaScript `.jsx`) + Vite
+
+* **Styling:** Custom CSS (`src/index.css` & `src/styles/`)
+
+* **State & Context:** React Context API (`src/contexts/`) & Custom Hooks (`src/hooks/`)
+
+* **API Communication:** Fetch / HTTP Client Service Layer (`src/services/`)
+
+* **Deployment & Routing:** Vercel (`vercel.json` SPA rewrite configuration)
+
+## 📂 Struktur Proyek
+
+```
+Frontend-Gymnasyum/
+├── public/                    # Aset statis publik (ikon, favicon)
+├── src/
+│   ├── assets/                # Gambar, logo, dan ilustrasi aplikasi
+│   ├── components/            # Komponen UI modular (DetailAiSummary, DetailRingkasanAi, DetailDrafWhatsapp, dll.)
+│   ├── contexts/              # Global state management (AuthContext, dll.)
+│   ├── hooks/                 # Custom React hooks untuk fetching & state logic
+│   ├── pages/                 # Halaman utama (Dashboard, Customer, Detail Customer, Prioritas Follow-Up, Input Data, Pengaturan)
+│   ├── services/              # Integrasi REST API ke Backend Gymnasyum
+│   ├── styles/                # File CSS modular untuk layout & komponen
+│   ├── utils/                 # Fungsi helper & formatter data
+│   ├── App.jsx                # Konfigurasi routing & layout utama aplikasi
+│   ├── index.css              # Global stylesheet
+│   └── main.jsx               # Entry point aplikasi React
+├── .env.example               # Template environment variables
+├── eslint.config.js           # Konfigurasi linter ESLint
+├── index.html                 # Root HTML template Vite
+├── package.json               # Daftar dependencies & scripts
+├── pnpm-lock.yaml             # Lockfile pnpm
+├── vercel.json                # Konfigurasi SPA routing untuk Vercel
+└── vite.config.js             # Konfigurasi bundler Vite
+
 ```
 
----
+## 🧭 Alur Penggunaan Admin
 
-## Instalasi & Menjalankan
+1. **Login Admin:** Masuk menggunakan kredensial akun admin untuk memperoleh sesi autentikasi.
 
-1. **Clone repository**
+2. **Pantau Prioritas Follow-Up:** Buka menu **Prioritas Follow-Up** atau **Customer** untuk melihat anggota dengan label *At Risk* dan *Need Attention*.
 
-   ```bash
-   git clone <URL-REPO-FRONTEND>
-   cd <NAMA-FOLDER-FRONTEND>
+3. **Tinjau Detail & Ringkasan AI:** Klik salah satu anggota untuk membuka halaman **Detail Customer**, lalu periksa bagian **Faktor Resiko Utama** dan **Ringkasan AI**.
+
+4. **Sesuaikan & Kirim Draf WhatsApp:** Periksa teks pada kartu **Draft Follow-Up WhatsApp**, lakukan penyesuaian bahasa bila diperlukan, simpan pembaruan, lalu kirimkan ke anggota.
+
+## 🚀 Prasyarat & Instalasi Lokal
+
+### Prasyarat
+
+* **Node.js** versi `>= 18.x`
+
+* **npm** atau **pnpm**
+
+* Server **Backend Gymnasyum** sudah berjalan (lokal maupun URL production Vercel)
+
+### Langkah Instalasi
+
+1. **Clone repository ini:**
+
+   ```
+   git clone https://github.com/waylifeaman/Frontend-Gymnasyum.git
+   cd Frontend-Gymnasyum
+   
    ```
 
-2. **Pasang dependensi**
+2. **Install dependencies:**
+   Menggunakan `pnpm` (direkomendasikan):
 
-   ```bash
+   ```
+   pnpm install
+   
+   ```
+
+   Atau menggunakan `npm`:
+
+   ```
    npm install
+   
    ```
 
-3. **Buat file environment**
+3. **Salin dan sesuaikan file environment:**
 
-   ```bash
+   ```
    cp .env.example .env
+   
    ```
 
-   (Windows PowerShell: `Copy-Item .env.example .env`)
+4. **Jalankan server development:**
 
-   Lalu isi sesuai bagian [Environment Variables](#environment-variables).
-
-4. **Jalankan mode pengembangan**
-
-   ```bash
-   npm run dev
+   ```
+   pnpm dev
+   # atau: npm run dev
+   
    ```
 
-   Buka alamat yang tampil di terminal (biasanya `http://localhost:5173`).
+   Aplikasi dapat diakses melalui browser di `http://localhost:5173`.
 
-5. **Login**
+## 🔐 Konfigurasi Environment Variables
 
-   Gunakan akun admin dari backend. Jika backend memakai data seed:
+Sesuaikan variabel pada file `.env` (lokal) dan **Vercel Project Settings → Environment Variables**:
 
-   | Email | Password |
-   | --- | --- |
-   | `admin@gymnasyum.id` | `admin123` |
+| Variabel | Wajib | Deskripsi | Contoh Nilai | 
+| ----- | ----- | ----- | ----- | 
+| `VITE_API_BASE_URL` | **Ya** | Base URL endpoint REST API Backend Gymnasyum *(sesuaikan dengan nama key di `.env.example`)* | `https://backend-gymnasyum.vercel.app/api` | 
 
-   > Akun ini hanya untuk pengembangan. Ganti passwordnya sebelum aplikasi dibuka untuk umum.
+> **Catatan:** Pada Vite, semua variabel environment yang diakses dari kode client wajib diawali dengan prefix `VITE_`.
 
----
+## ☁️ Deployment (Vercel)
 
-## Environment Variables
+1. Push repository ke GitHub dan impor proyek ke **Vercel**.
 
-Buat file `.env` di root proyek. Variabel Vite harus diawali `VITE_`.
+2. Konfigurasikan **Framework Preset** ke **Vite** (Build Command: `npm run build` / `pnpm build`, Output Directory: `dist`).
 
-| Variabel | Contoh | Keterangan |
-| --- | --- | --- |
-| `VITE_API_URL` | `http://localhost:4000/api/v1` | Alamat dasar API backend |
+3. Tambahkan environment variable pada pengaturan proyek Vercel.
 
-> Sesuaikan nama variabel dengan yang dipakai di kode (cek file konfigurasi Axios). Jangan commit file `.env`; commit hanya `.env.example`.
+4. File `vercel.json` sudah disertakan untuk menangani *client-side routing* (SPA fallback ke `index.html`) agar tidak terjadi `404` saat halaman di-refresh pada route seperti `/customer/467`.
 
----
+## 🔧 Troubleshooting Umum
 
-## Script yang Tersedia
-
-| Perintah | Fungsi |
-| --- | --- |
-| `npm run dev` | Menjalankan server pengembangan |
-| `npm run build` | Membuat build produksi di folder `dist/` |
-| `npm run preview` | Menjalankan hasil build secara lokal |
-| `npm run lint` | Memeriksa kualitas kode dengan ESLint |
-
----
-
-## Struktur Folder
-
-Gambaran umum struktur `src/` (sesuaikan jika ada perubahan):
-
-```
-src/
-├── assets/         # gambar, ikon, font
-├── components/     # komponen UI yang dipakai ulang
-├── hooks/          # custom hooks (customer, reschedule, reminder, dst.)
-├── pages/          # halaman utama (dashboard, customer, input data, ...)
-├── services/       # fungsi pemanggil API (customerService, reminderService, ...)
-├── App.jsx         # routing utama
-└── main.jsx        # entry point
-```
-
-Pola yang dipakai:
-
-- **services/** — satu-satunya tempat yang berbicara langsung ke API.
-- **hooks/** — membungkus services + state (loading, error) agar komponen tetap sederhana.
-- **components/pages** — fokus pada tampilan.
-
----
-
-## Cara Pakai Aplikasi
-
-### 1. Memantau risiko customer
-Buka dashboard untuk melihat daftar prioritas. Customer berlabel **At Risk** dan **Need Attention** tampil paling atas. Klik satu customer untuk melihat detailnya.
-
-### 2. Menindaklanjuti customer
-Di halaman detail:
-1. Baca ringkasan AI dan statistik 7 hari terakhir.
-2. Klik **Generate Draft** (atau **Generate Ulang**) untuk membuat draf pesan.
-3. Edit pesan sesuai kebutuhan.
-4. Klik **Kirim ke WhatsApp**. WhatsApp terbuka dengan pesan terisi, dan reminder otomatis tercatat.
-
-### 3. Mencatat kehadiran
-Menu **Input Data → Kehadiran**: pilih customer, pilih sesi paket, tentukan status (Hadir / Tidak Hadir / Dijadwal Ulang), lalu simpan. Sisa sesi paket ikut berkurang saat status *Hadir*.
-
-### 4. Mencatat kedatangan reschedule
-Menu **Input Data → Reschedule**: pilih customer, pilih sesi yang dijadwal ulang dan belum dihadiri, isi tanggal & jam kedatangan, lalu simpan. Tanggal kedatangan tidak boleh di masa depan.
-
-### 5. Mencatat respons reminder
-Setelah customer membalas pesan, perbarui status reminder (*replied*, *read*, atau *no_response*).
-
-### 6. Mengelola paket
-Menu **Paket**: tambah atau ubah paket, dan ubah status menjadi *aktif* atau *nonaktif*. Paket nonaktif tidak bisa dipasang ke customer.
-
----
-
-## Integrasi dengan Backend
-
-Frontend memanggil REST API backend. Beberapa endpoint yang dipakai:
-
-| Method | Endpoint | Kegunaan |
-| --- | --- | --- |
-| `POST` | `/auth/login` | Login admin |
-| `GET` | `/customers` | Daftar customer |
-| `GET` | `/customers/:id` | Detail customer + statistik |
-| `GET` | `/attendance?customer_id=` | Riwayat kehadiran |
-| `POST` | `/attendance` | Catat kehadiran |
-| `GET` | `/attendance/pending-reschedule?customer_id=` | Sesi reschedule yang menunggu |
-| `POST` | `/attendance/:id/reschedule` | Catat kedatangan reschedule |
-| `POST` | `/reminders` | Catat reminder terkirim |
-| `PATCH` | `/reminders/:id` | Perbarui respons reminder |
-| `GET` | `/packages` | Daftar paket (`?status=active`) |
-
-> Daftar di atas adalah ringkasan. Dokumentasi lengkap ada di repo backend. Periksa kembali nama endpoint sesuai versi backend terbaru.
-
-Semua request (kecuali login) membutuhkan header:
-
-```
-Authorization: Bearer <token>
-```
-
-Peran pengguna ditentukan oleh **token dari backend**, bukan dikirim oleh frontend.
-
----
-
-## Konvensi Git & Kontribusi
-
-**Penamaan branch**
-
-```
-feat/nama-fitur      # fitur baru
-fix/nama-bug         # perbaikan bug
-docs/nama-dokumen    # perubahan dokumentasi
-```
-
-**Pesan commit** (mengikuti [Conventional Commits](https://www.conventionalcommits.org/)):
-
-```
-feat: tambah form input reschedule
-fix: perbaiki validasi tanggal kedatangan
-docs: perbarui README
-```
-
-**Alur kontribusi**
-
-1. Pindah ke `main` dan ambil versi terbaru: `git checkout main && git pull origin main`
-2. Buat branch baru: `git checkout -b feat/nama-fitur`
-3. Kerjakan, lalu `git add .` dan `git commit`
-4. Push: `git push -u origin feat/nama-fitur`
-5. Buka Pull Request ke `main` dan minta review minimal satu anggota tim
-
-**Jangan pernah commit:** `.env`, password, URI database, atau token.
-
----
-
-## Troubleshooting
-
-| Masalah | Kemungkinan penyebab & solusi |
-| --- | --- |
-| Halaman kosong / data tidak muncul | Backend belum jalan atau `VITE_API_URL` salah. Cek di tab Network browser. |
-| Error CORS | Izinkan alamat frontend (mis. `http://localhost:5173`) di konfigurasi CORS backend. |
-| `403 Forbidden` | Akun bukan admin atau token lama. Logout lalu login ulang dengan akun admin. |
-| `401 Unauthorized` | Token kedaluwarsa. Login ulang. |
-| Perubahan `.env` tidak terbaca | Restart `npm run dev`; Vite hanya membaca `.env` saat start. |
-| WhatsApp tidak terbuka saat Kirim | Browser memblokir popup. Izinkan popup untuk situs ini. |
-| `visited_at must be ≤ now` | Tanggal/jam kedatangan reschedule berada di masa depan. Pilih waktu yang sudah lewat. |
-
----
-
-## Tim
-
-Proyek capstone Dicoding oleh tim 5 orang:
-
-| Peran | Nama |
-| --- | --- |
-| Frontend | _isi nama_ |
-| Backend | Aman |
-| Machine Learning | Joy |
-| Generative AI | Seleni |
-| _peran lain_ | _isi nama_ |
-
----
-
-## Lisensi
-
-Proyek ini dibuat untuk keperluan pembelajaran (capstone Dicoding). Tentukan lisensi sesuai kebutuhan tim, misalnya MIT.
+| Gejala / Error | Penyebab | Solusi | 
+| ----- | ----- | ----- | 
+| **Network Error / CORS Error** saat login | URL frontend belum terdaftar di `FRONTEND_URL` backend atau `VITE_API_BASE_URL` salah | Pastikan `VITE_API_BASE_URL` mengarah ke URL backend yang benar dan terdaftar di konfigurasi CORS backend. | 
+| **404 Not Found** saat refresh halaman `/customer/:id` | Vercel mencari file fisik sesuai path URL pada aplikasi SPA | Pastikan file `vercel.json` memiliki aturan `rewrites` ke `/index.html`. | 
+| **Tabel Ringkasan AI melebar keluar layar** | Tabel Markdown LLM memiliki banyak kolom pada layar kecil | Pastikan kontainer `.col-ai` memiliki `min-width: 0` dan elemen `table` diatur `display: block; overflow-x: auto;`. | 
+| **Kotak Draft Follow-Up WhatsApp kosong** | Draf belum di-generate atau sedang diproses batch cron | Klik tombol **Generate Ulang** pada halaman Detail Customer untuk memicu generasi instan. | 
