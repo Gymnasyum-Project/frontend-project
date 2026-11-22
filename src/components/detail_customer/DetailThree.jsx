@@ -88,8 +88,10 @@ export default function DetailThree({ data, card, onRefresh }) {
         <div
           style={{
             ...card,
+            minWidth: 0,
             maxHeight: "20rem",
             overflowY: "auto",
+            overflowX: "hidden",
             paddingRight: "0.75rem",
           }}
         >
